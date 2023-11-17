@@ -24,18 +24,35 @@
 
 <body>
 
-    <div id="content">
+    <div id="main">
+        
+        <div id="content">
 
-        <div class="divForm text-white">
-            <div class="imgForm">
-                <img src="" alt="">
-            </div>
-            <div class="camposForm">
-                <div class="row"></div>
-            </div>
-            <div class="footerForm">
+            <div class="divForm text-center text-white p-5">
+                <div class="imgForm">
+                    <img src="./assets/img/logo.png" alt="logoSite">
+                </div>
 
+                <form action="#" method="post" id="frmLogin" name="frmLogin">
+
+                    <div class="camposForm mb-3">
+
+                        <h1>LOGIN</h1>
+
+                        <input type="email" name="emailLogin" placeholder="E-mail" maxlength="60" required>
+                        <input type="password" name="senhaLogin" placeholder="Senha" maxlength="30" required>
+
+                    </div>
+
+                    <div class="footerForm">
+                        <button type="submit" class="mb-3">Entrar</button>
+
+                        <p>Não possui uma conta? <a href="">Cadastre-se</a></p>
+                    </div>
+
+                </form>
             </div>
+
         </div>
 
     </div>

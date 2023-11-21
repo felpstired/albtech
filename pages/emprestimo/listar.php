@@ -4,7 +4,7 @@
 
         <div class="row">
             <div class="col-3">
-                <img src="../../assets/img/logo.png" alt="imgLogo">
+                <img src="assets/img/logo.png" alt="imgLogo">
             </div>
             <div class="col-9">
                 TEXTOTEXTO

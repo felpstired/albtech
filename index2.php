@@ -35,17 +35,19 @@
 
                     <div class="camposForm mb-3">
 
-                        <h1>LOGIN</h1>
+                        <h1>CADASTRO</h1>
 
-                        <input type="email" name="emailLogin" placeholder="E-mail" maxlength="60" required>
-                        <input type="password" name="senhaLogin" placeholder="Senha" maxlength="30" required>
+                        <input type="text" name="nomeCadastro" placeholder="Nome" maxlength="80" required>
+                        <input type="email" name="emailCadastro" placeholder="E-mail" maxlength="60" required>
+                        <input type="text" name="cpfCadastro" placeholder="CPF" id="maskCpf" maxlength="14" required>
+                        <input type="password" name="senhaCadastro" placeholder="Senha" maxlength="30" required>
 
                     </div>
 
                     <div class="footerForm">
-                        <button type="submit" class="mb-3">Entrar</button>
+                        <button type="submit" class="mb-3">Cadastrar</button>
 
-                        <p>Não possui uma conta? <a href="./index2.php">Cadastre-se</a></p>
+                        <p>Já possui uma conta? <a href="./index.php">Faça Login</a></p>
                     </div>
 
                 </form>

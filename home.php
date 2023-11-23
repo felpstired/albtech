@@ -20,6 +20,10 @@
     <!-- link para o nosso css -->
     <link rel="stylesheet" href="./assets/css/style.css">
 
+    <!-- link para os icons -->
+    <link rel="stylesheet" type="text/css"
+          href="//cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
+
 </head>
 
 <body>

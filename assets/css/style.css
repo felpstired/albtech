@@ -7,7 +7,8 @@
     overflow: hidden;
 }
 
-body, html {
+body,
+html {
     height: 100%;
 }
 
@@ -118,7 +119,9 @@ body {
 }
 
 @media (max-width: 600px) {
-    .camposForm input, .footerForm button {
+
+    .camposForm input,
+    .footerForm button {
         font-size: 15px;
     }
 }
@@ -134,6 +137,11 @@ body {
 
 .footerForm a:hover {
     color: #298080;
+}
+
+.footer hr {
+    color: white;
+    background-color: white;
 }
 
 .userInfo img {
@@ -152,10 +160,73 @@ body {
 }
 
 .headerListar {
-    background-color: #c7c7c7;
-    padding: 15px;
+    background-color: rgba(228, 228, 228, 0.795);
+    border-radius: 15px;
+    padding: 25px;
 }
 
 .headerListar img {
     max-width: 100%;
+}
+
+.corpoListar {
+    background-color: rgba(228, 228, 228, 0.795);
+    border-radius: 15px;
+    padding: 25px;
+}
+
+.pesquisaLista label {
+    font-size: 25px;
+}
+
+.pesquisaLista select {
+    padding: 3px 7px;
+    font-size: 22px;
+    border-radius: 5px;
+    color: #898783;
+    border: 2px solid #414141;
+    margin-left: 10px;
+}
+
+.pesquisaLista select:focus {
+    outline: none;
+}
+
+.pesquisaLista input {
+    padding: 3px 10px;
+    font-size: 22px;
+    border-radius: 5px;
+    color: #898783;
+    border: 2px solid #414141;
+    margin-left: 10px;outline: none;
+}
+
+.pesquisaLista input:focus {
+    outline: none;
+}
+
+.pesquisaLista button {
+    padding: 5px 10px;
+    font-size: 22px;
+    border-radius: 5px;
+    background-color: #A3A3A3;
+    color: white;
+    border: none;
+    transition: 0.3s;
+}
+
+.pesquisaLista button:hover {
+    background-color: #8a8a8a;    
+}
+
+/* -------------------- */
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 4vw;
+    }
+
+    h4 {
+        font-size: 3vw;
+    }
 }

@@ -4,7 +4,7 @@
     box-sizing: border-box;
     font-family: 'Playfair Display', serif;
     /* font-family: 'Playfair Display SC', serif; */
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 body,
@@ -49,6 +49,7 @@ body {
     width: 100%;
     height: 100%;
     background-color: rgba(0, 0, 0, 0.555);
+    /* overflow-y: scroll; */
 }
 
 .divForm {
@@ -180,6 +181,7 @@ body {
 }
 
 .pesquisaLista select {
+    max-width: 100%;
     padding: 3px 7px;
     font-size: 22px;
     border-radius: 5px;
@@ -193,12 +195,13 @@ body {
 }
 
 .pesquisaLista input {
+    width: 100%;
     padding: 3px 10px;
     font-size: 22px;
     border-radius: 5px;
     color: #898783;
     border: 2px solid #414141;
-    margin-left: 10px;outline: none;
+    outline: none;
 }
 
 .pesquisaLista input:focus {
@@ -216,7 +219,18 @@ body {
 }
 
 .pesquisaLista button:hover {
-    background-color: #8a8a8a;    
+    background-color: #414141;    
+}
+
+.alinharVH {
+    width: 100%;
+    height: 100%;
+    word-break: normal;
+}
+
+.dashboardLista table {
+    border-radius: 5px;
+    /* border: none; */
 }
 
 /* -------------------- */

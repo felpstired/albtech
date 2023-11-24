@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en">
+<html lang="pt-BR">
 
 <head>
 
@@ -37,7 +37,6 @@
         include_once './menutop.php';
 
         ?>
-
 
         <div id="corpo">
             <div class="corp">

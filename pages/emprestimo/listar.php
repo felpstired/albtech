@@ -1,4 +1,4 @@
-<div class="listarPageGeral">
+<div class="listarPageGeral mb-3">
 
     <div class="headerListar">
 
@@ -93,7 +93,7 @@
 
         <div class="dashboardLista mt-5">
             <table class="table table-striped table-hover text-center">
-                <thead>
+                <thead class="bg-dark">
                     <tr>
                         <th scope="col" width="5%">ID</th>
                         <th scope="col" width="15%">Usuário</th>

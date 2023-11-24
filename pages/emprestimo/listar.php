@@ -92,8 +92,8 @@
         </div>
 
         <div class="dashboardLista mt-5">
-            <table class="table table-striped table-hover text-center">
-                <thead class="bg-dark">
+            <table class="table text-center rounded-5">
+                <thead class="table-dark">
                     <tr>
                         <th scope="col" width="5%">ID</th>
                         <th scope="col" width="15%">Usuário</th>
@@ -103,7 +103,7 @@
                         <th scope="col" width="14%">Ações</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody class="table-group-divider">
                     <tr>
                         <th scope="row">1</th>
                         <td>Mark</td>
@@ -117,7 +117,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">2</th>
                         <td>Otto</td>
                         <td>Percy Jasckson e o Ladrão de Raios</td>
                         <td>12/10/2023</td>
@@ -129,7 +129,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">3</th>
                         <td>Amber</td>
                         <td>Harry Potter e a Pedra Filosofal</td>
                         <td>02/09/2023</td>
@@ -141,7 +141,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">4</th>
                         <td>Mark</td>
                         <td>Nove Novena</td>
                         <td>29/10/2023</td>
@@ -153,7 +153,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">5</th>
                         <td>Otto</td>
                         <td>Percy Jasckson e o Ladrão de Raios</td>
                         <td>12/10/2023</td>
@@ -165,7 +165,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">6</th>
                         <td>Amber</td>
                         <td>Harry Potter e a Pedra Filosofal</td>
                         <td>02/09/2023</td>
@@ -177,7 +177,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">7</th>
                         <td>Mark</td>
                         <td>Nove Novena</td>
                         <td>29/10/2023</td>
@@ -189,7 +189,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">8</th>
                         <td>Otto</td>
                         <td>Percy Jasckson e o Ladrão de Raios</td>
                         <td>12/10/2023</td>
@@ -201,7 +201,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">1</th>
+                        <th scope="row">9</th>
                         <td>Amber</td>
                         <td>Harry Potter e a Pedra Filosofal</td>
                         <td>02/09/2023</td>

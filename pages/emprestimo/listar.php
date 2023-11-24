@@ -3,12 +3,12 @@
     <div class="headerListar">
 
         <div class="row">
-            <div class="col-4 col-sm-4 col-md-3">
+            <div class="col-4 col-sm-4 col-md-4">
                 <div class="alinharVH d-flex align-items-center justify-content-center">
                     <img src="assets/img/logo.png" alt="imgLogo">
                 </div>
             </div>
-            <div class="col-8 col-sm-8 col-md-9 ps-5">
+            <div class="col-8 col-sm-8 col-md-8">
                 <div class="alinharVH d-flex justify-content-center flex-column">
                     <h1>Gerenciamento de Empréstimos</h1>
                     <a href="#">
@@ -92,7 +92,7 @@
         </div>
 
         <div class="dashboardLista mt-5">
-            <table class="table text-center rounded-5">
+            <table class="table table-hover table-stripped table-borderless text-center rounded-5">
                 <thead class="table-dark">
                     <tr>
                         <th scope="col" width="5%">ID</th>
@@ -103,7 +103,7 @@
                         <th scope="col" width="14%">Ações</th>
                     </tr>
                 </thead>
-                <tbody class="table-group-divider">
+                <tbody>
                     <tr>
                         <th scope="row">1</th>
                         <td>Mark</td>

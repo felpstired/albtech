@@ -31,7 +31,7 @@
                     <img src="./assets/img/logo.png" alt="logoSite">
                 </div>
 
-                <form action="#" method="post" id="frmLogin" name="frmLogin">
+                <form action="#" method="post" id="frmCadastro" name="frmCadastro">
 
                     <div class="camposForm mb-3">
 

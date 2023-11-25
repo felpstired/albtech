@@ -99,7 +99,7 @@
                         <th scope="col" width="15%">Usuário</th>
                         <th scope="col" width="30%">Livro</th>
                         <th scope="col" width="18%">Empréstimo</th>
-                        <th scope="col" width="18%">Devolução</th>
+                        <th scope="col" width="18%" class="showtd">Devolução</th>
                         <th scope="col" width="14%">Ações</th>
                     </tr>
                 </thead>
@@ -109,7 +109,7 @@
                         <td>Mark</td>
                         <td>Nove Novena</td>
                         <td>29/10/2023</td>
-                        <td>10/11/2023</td>
+                        <td class="showtd">10/11/2023</td>
                         <td>
                             <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
                             <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
@@ -121,7 +121,7 @@
                         <td>Otto</td>
                         <td>Percy Jasckson e o Ladrão de Raios</td>
                         <td>12/10/2023</td>
-                        <td>15/11/2023</td>
+                        <td class="showtd">15/11/2023</td>
                         <td>
                             <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
                             <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
@@ -133,7 +133,7 @@
                         <td>Amber</td>
                         <td>Harry Potter e a Pedra Filosofal</td>
                         <td>02/09/2023</td>
-                        <td>17/10/2023</td>
+                        <td class="showtd">17/10/2023</td>
                         <td>
                             <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
                             <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
@@ -145,7 +145,7 @@
                         <td>Mark</td>
                         <td>Nove Novena</td>
                         <td>29/10/2023</td>
-                        <td>10/11/2023</td>
+                        <td class="showtd">10/11/2023</td>
                         <td>
                             <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
                             <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
@@ -157,7 +157,7 @@
                         <td>Otto</td>
                         <td>Percy Jasckson e o Ladrão de Raios</td>
                         <td>12/10/2023</td>
-                        <td>15/11/2023</td>
+                        <td class="showtd">15/11/2023</td>
                         <td>
                             <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
                             <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
@@ -169,7 +169,7 @@
                         <td>Amber</td>
                         <td>Harry Potter e a Pedra Filosofal</td>
                         <td>02/09/2023</td>
-                        <td>17/10/2023</td>
+                        <td class="showtd">17/10/2023</td>
                         <td>
                             <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
                             <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
@@ -181,7 +181,7 @@
                         <td>Mark</td>
                         <td>Nove Novena</td>
                         <td>29/10/2023</td>
-                        <td>10/11/2023</td>
+                        <td class="showtd">10/11/2023</td>
                         <td>
                             <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
                             <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
@@ -193,7 +193,7 @@
                         <td>Otto</td>
                         <td>Percy Jasckson e o Ladrão de Raios</td>
                         <td>12/10/2023</td>
-                        <td>15/11/2023</td>
+                        <td class="showtd">15/11/2023</td>
                         <td>
                             <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
                             <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
@@ -205,7 +205,7 @@
                         <td>Amber</td>
                         <td>Harry Potter e a Pedra Filosofal</td>
                         <td>02/09/2023</td>
-                        <td>17/10/2023</td>
+                        <td class="showtd">17/10/2023</td>
                         <td>
                             <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
                             <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>

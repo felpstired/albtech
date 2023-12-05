@@ -39,7 +39,7 @@ if ($servidorLocal) {
     define('HOST', 'localhost');
     define('USER', 'root');
     define('PASS', '');
-    define('DBNAME', 'dbaula');
+    define('DBNAME', 'dbbiblioteca');
 } else {
     define('HOST', '0');
     define('USER', '0');

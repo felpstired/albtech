@@ -27,7 +27,7 @@ $(document).ready(function () {
                 if (retorno != 'Você não está logado!') {
                     setTimeout(function () {
                         loadingEnd();
-                        $('div#content').html(retorno);
+                        $('div#contentHome').html(retorno);
                     }, 1000);
                 } else {
                     msgGeral('ERRO: ' + retorno + ' Tente novamente mais tarde.', 'error');
@@ -37,17 +37,9 @@ $(document).ready(function () {
         });
     });
 
-    // abrir e fechar a sidebar
-    $('#btnMenu').click(function () {
-        document.getElementById("homeSidebar").style.width = "25%";
-    });
-
-    $('#closeSidebar').click(function () {
-        document.getElementById("homeSidebar").style.width = "0";
-    })
-
 });
 
+// função de mascaras
 function masks() {
     $('.maskCPF').inputmask({
         mask: '999.999.999-99'
@@ -59,6 +51,7 @@ function masks() {
 
 }
 
+// função de atualizar páginas
 function listarPage(listar) {
 
     let dados = {
@@ -78,11 +71,151 @@ function listarPage(listar) {
     });
 }
 
+// função de modal para mostrar uma mensagem 
+function msgGeral(msg, tipo) {
+    Swal.fire({
+        position: 'center',
+        icon: tipo,
+        title: msg,
+        showConfirmButton: false,
+        timer: 1500
+    })
+}
+
+// funções para adicionar um loading na tela 
+function loading() {
+    Swal.fire({
+        title: 'Carregando...',
+        html: 'Aguarde um momento.',
+        didOpen: () => {
+            Swal.showLoading()
+        }
+    })
+
+}
+
+function loadingEnd() {
+    Swal.close();
+}
+
+
+
+
+// FUNÇÕES ADM
+function Login() {
+
+    $('#frmLogin').submit(function (event) {
+        event.preventDefault();
+
+        console.log('Clicou em entrar');
+
+        let dadosForm = $(this).serializeArray();
+
+        console.log(dadosForm);
+
+        dadosForm.push(
+            { name: 'acao', value: 'Login' },
+        )
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: 'controle.php',
+            data: dadosForm,
+            beforeSend: function () {
+                console.log('Antes de enviar');
+            },
+            success: function (retorno) {
+                console.log('Depois de enviar');
+
+                console.log(retorno);
+
+                if (retorno === 'OK') {
+
+                    msgGeral('Login efetuado com sucesso!', 'success');
+
+                    setTimeout(function () {
+                        listarPage('home');
+                    }, 1500);
+
+                } else {
+
+                    msgGeral('ERRO: ' + retorno + ' Tente novamente mais tarde.', 'error');
+
+                }
+
+            }
+
+        });
+
+    });
+
+}
+
+
+function Logout() {
+
+    Swal.fire({
+        title: "Você tem certeza?",
+        text: "Essa ação irá te deslogar!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#C999AF',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Não, cancelar!',
+        confirmButtonText: 'Sim, sair!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+
+            var dados = {
+                acao: 'Logout'
+            };
+
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: 'controle.php',
+                data: dados,
+                beforeSend: function () {
+
+                }, success: function (retorno) {
+
+                    if (retorno === 'OK') {
+                        Swal.fire({
+                            title: 'Desconectado!',
+                            text: 'Você foi desconectado de nosso site.',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+
+                        })
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1500);
+                    } else {
+                        Swal.fire({
+                            title: 'Erro!',
+                            text: retorno,
+                            icon: 'error',
+                            showConfirmButton: true,
+                            timer: 1500
+                        })
+                    }
+
+                }
+            });
+        }
+    })
+
+}
+
 
 
 
 // FUNÇÕES DE CADASTRAR, ALTERAR E EXCLUIR
 
+
+// AÇÕES USUARIO
 var sendAddUser = false;
 
 function addUser() {
@@ -99,7 +232,7 @@ function addUser() {
             let dadosForm = $(this).serializeArray();
 
             dadosForm.push(
-                {name: 'acao', value: 'addUser'},
+                { name: 'acao', value: 'addUser' },
             )
 
             // var dados = {

@@ -13,7 +13,7 @@
 //validar Sessao usuário
 
 
-function checarLogin($tabela, $valor1, $valor2)
+function checarLoginCPF($tabela, $valor1, $valor2)
 {
     $conn = conectar();
     try {
@@ -25,6 +25,31 @@ function checarLogin($tabela, $valor1, $valor2)
         $conn->commit();
         if ($sqlLista->rowCount() > 0) {
             return 'OK';
+        } else {
+            return 'false';
+        };
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
+
+
+
+function checarLoginEmail($campos, $tabela, $valor1, $valor2)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela WHERE email = ? AND senha = ?");
+        $sqlLista->bindValue(1, $valor1, PDO::PARAM_STR);
+        $sqlLista->bindValue(2, $valor2, PDO::PARAM_STR);
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
         } else {
             return 'false';
         };
@@ -2489,6 +2514,27 @@ function listarGeral($campos, $tabela)
         $conn->beginTransaction();
         $sqlLista = $conn->query("SELECT $campos "
             . "FROM $tabela ");
+        $sqlLista->execute();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        } else {
+            return 'Vazio';
+        };
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
+
+function listarRegistrosStr($campos, $tabela, $campoParam, $campoValor)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela WHERE $campoParam = ?");
+        $sqlLista->bindValue(1, $campoValor, PDO::PARAM_STR);
         $sqlLista->execute();
         if ($sqlLista->rowCount() > 0) {
             return $sqlLista->fetchAll(PDO::FETCH_OBJ);
@@ -4989,7 +5035,7 @@ function verificarLogin($email, $pass)
                 if (password_verify($pass, $senhaUser)) {
                     $_SESSION['idUser'] = $idUser;
                     $_SESSION['user'] = $nomeUser;
-                    return 'OK';                    
+                    return 'OK';
                 }
             } else {
                 return 'Usuário não se encontra ativo.';
@@ -5000,7 +5046,7 @@ function verificarLogin($email, $pass)
     } catch (PDOException $e) {
         echo 'ERRO: ';
         return ($e->getMessage());
-        $conn->rollBack(); 
+        $conn->rollBack();
     }
     $conn = null;
 }

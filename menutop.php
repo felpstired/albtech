@@ -45,7 +45,7 @@
                 </li>
                 <hr>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Deslogar</a>
+                    <a class="nav-link" href="#" onclick="Logout();">Deslogar</a>
                 </li>
                 <hr>
             </ul>

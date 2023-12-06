@@ -8,8 +8,6 @@ $(document).ready(function () {
     $('.linkMenu').click(function (event) {
         event.preventDefault();
 
-        document.getElementById("homeSidebar").style.width = "0"
-
         let menuClicado = $(this).attr('idMenu');
 
         let dados = {
@@ -136,6 +134,7 @@ function Login() {
 
                     setTimeout(function () {
                         listarPage('home');
+                        window.location.reload();
                     }, 1500);
 
                 } else {
@@ -160,8 +159,8 @@ function Logout() {
         text: "Essa ação irá te deslogar!",
         icon: 'warning',
         showCancelButton: true,
-        confirmButtonColor: '#C999AF',
-        cancelButtonColor: '#d33',
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#2d234266',
         cancelButtonText: 'Não, cancelar!',
         confirmButtonText: 'Sim, sair!'
     }).then((result) => {

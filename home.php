@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 if (empty($_SESSION['dadosUser'])) {
 
@@ -21,19 +21,44 @@ if (empty($_SESSION['dadosUser'])) {
 
             <div id="contentHome">
 
+                <div class="listarPageGeral mb-3">
 
-                <?php
+                    <div class="headerListar">
 
-                include_once './pages/emprestimo/listar.php';
+                        <div class="row">
+                            <div class="col-4 col-sm-4 col-md-4">
+                                <div class="alinharVH d-flex align-items-center justify-content-center">
+                                    <img src="assets/img/logo.png" alt="imgLogo">
+                                </div>
+                            </div>
+                            <div class="col-8 col-sm-8 col-md-8">
+                                <div class="alinharVH d-flex justify-content-center flex-column">
+                                    <h1>Gerenciamento de Biblioteca</h1>
+                                </div>
+                            </div>
+                        </div>
 
-                ?>
+                    </div>
 
+
+                    <div class="corpoListar corpoListarHome mt-4 text-center">
+
+                        <div class="textoHome">
+                            <h1>Nenhum menu selecionado ainda!</h1>
+
+                            <h4>
+                                Selecione um menu ( <span class="mdi mdi-menu"></span> ) para começar a navegar
+                            </h4>
+                        </div>
+
+                    </div>
+
+                </div>
 
             </div>
-
         </div>
-    </div>
 
+    </div>
 
     <?php
 

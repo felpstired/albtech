@@ -36,10 +36,34 @@
     <link href="./assets/css/fontesGoogle.css" rel="stylesheet">
 
     <!-- link para os icons -->
-    <link rel="stylesheet" type="text/css" href="./assets/css/mdiIcons.css">
+    <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/npm/@mdi/font@6.5.95/css/materialdesignicons.min.css">
 
     <!-- link para o css do bootstrap -->
     <link href="./assets/css/bootstrap.css" rel="stylesheet">
+
+    <style>
+        #content {
+            width: 100%;
+            height: 100%;
+
+            <?php
+
+            if (empty($_SESSION['pages'])) {
+
+            ?>
+            
+            background-color: rgba(0, 0, 0, 0.445);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            <?php
+
+            }
+
+            ?>
+        }
+    </style>
 
     <!-- link para o nosso css -->
     <link rel="stylesheet" href="./assets/css/style.css">

@@ -1,4 +1,4 @@
-<div id="footer">
+<div id="footer" class="">
 
     <div class="container-fluid bg-dark text-white text-center p-3">
         <hr>

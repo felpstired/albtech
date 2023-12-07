@@ -25,5 +25,34 @@ switch ($acao) {
         $_SESSION['pages'] = $acao;
         include_once './home.php';
         break;
+    
+    case 'pageEmp':
+        $_SESSION['pages'] = $acao;
+        include_once './pages/emprestimo/listar.php';
+        break;
+    case 'pageDev':
+        $_SESSION['pages'] = $acao;
+        include_once './pages/devolucao/listar.php';
+        break;
+    case 'pageLiv':
+        $_SESSION['pages'] = $acao;
+        include_once './pages/livros/listar.php';
+        break;
+    case 'pageTLiv':
+        $_SESSION['pages'] = $acao;
+        include_once './pages/tlivros/listar.php';
+        break;
+    case 'pageUser':
+        $_SESSION['pages'] = $acao;
+        include_once './pages/usuarios/listar.php';
+        break;
+    case 'pageAdm':
+        $_SESSION['pages'] = $acao;
+        include_once './pages/adm/listar.php';
+        break;
+    case 'pageLog':
+        $_SESSION['pages'] = $acao;
+        include_once './pages/log.php';
+        break;
 
 }

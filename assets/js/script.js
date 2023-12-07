@@ -4,6 +4,8 @@ $(document).ready(function () {
     masks();
 
 
+    var menuLateral = document.getElementById('offcanvasDarkNavbar');
+
     // navegação na página
     $('.linkMenu').click(function (event) {
         event.preventDefault();
@@ -23,10 +25,22 @@ $(document).ready(function () {
                 loading();
             }, success: function (retorno) {
                 if (retorno != 'Você não está logado!') {
-                    setTimeout(function () {
-                        loadingEnd();
-                        $('div#contentHome').html(retorno);
-                    }, 1000);
+                    if (menuLateral.classList.contains('show')) {
+                        menuLateral.classList.toggle('show');
+                    }
+                    if (menuClicado == 'home') {                        
+                        setTimeout(function () {
+                            loadingEnd();
+                            $('div#content').html(retorno);
+                        }, 1000);
+                    } else {
+                        setTimeout(function () {
+                            loadingEnd();
+                            $('div#contentHome').html(retorno);
+                            window.location.reload();
+
+                        }, 1000);
+                    }                    
                 } else {
                     msgGeral('ERRO: ' + retorno + ' Tente novamente mais tarde.', 'error');
                 }

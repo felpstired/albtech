@@ -50,6 +50,7 @@
 
             ?>
             
+            
             background-color: rgba(0, 0, 0, 0.445);
             display: flex;
             justify-content: center;
@@ -57,9 +58,17 @@
 
             <?php
 
-            }
+            } else if ($_SESSION['pages'] == 'home') {
 
             ?>
+            
+            height: 100%;
+            
+            <?php
+
+            }
+
+                ?>
         }
     </style>
 

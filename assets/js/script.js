@@ -28,10 +28,11 @@ $(document).ready(function () {
                     if (menuLateral.classList.contains('show')) {
                         menuLateral.classList.toggle('show');
                     }
-                    if (menuClicado == 'home') {                        
+                    if (menuClicado == 'home') {
                         setTimeout(function () {
                             loadingEnd();
                             $('div#content').html(retorno);
+                            window.location.reload();
                         }, 1000);
                     } else {
                         setTimeout(function () {
@@ -40,7 +41,7 @@ $(document).ready(function () {
                             window.location.reload();
 
                         }, 1000);
-                    }                    
+                    }
                 } else {
                     msgGeral('ERRO: ' + retorno + ' Tente novamente mais tarde.', 'error');
                 }
@@ -160,6 +161,35 @@ function Login() {
             }
 
         });
+
+    });
+
+}
+
+
+function procurarLivro() {
+
+    var isbn = $('#livroISBN').val();
+
+    var dados = {
+        acao: 'consultaISBN',
+        isbn: isbn,
+    }
+
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: 'controle.php',
+        data: dados,
+        beforeSend: function () {
+            console.log('Antes de enviar');
+        },
+        success: function (retorno) {
+            console.log('Depois de enviar');
+
+            console.log(retorno);
+
+        }
 
     });
 

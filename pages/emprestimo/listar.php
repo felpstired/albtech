@@ -11,7 +11,7 @@
             <div class="col-8 col-sm-8 col-md-8">
                 <div class="alinharVH d-flex justify-content-center flex-column">
                     <h1>Gerenciamento de Empréstimos</h1>
-                    <a href="#">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <h4>Registrar novo empréstimo</h4>
                     </a>
                 </div>
@@ -218,4 +218,74 @@
 
     </div>
 
+</div>
+
+<div class="modal fade" tabindex="-1" id="exampleModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h3 class="modal-title">Novo Registro de Empréstimo</h3>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="#" method="post" id="frmAddEmp" name="frmAddEmp">
+
+                <div class="modal-body fs-5">
+                    <div class="row mb-3" id="inputISBN">
+                        <div class="mb-3 col-sm-12 col-md-8">
+                            <label for="exampleInputPassword1" class="form-label">ISBN:</label>
+                            <input type="text" class="form-control" id="livroISBN" name="livroISBN" maxlength="13">
+                        </div>
+                        <div class="mb-3 col-md-4 form-check align-items-center d-flex col-sm-12">
+                            <input type="checkbox" class="form-check-input me-2" id="exampleCheck1">
+                            <label class="form-check-label" for="exampleCheck1">Não possuo um ISBN</label>
+                        </div>
+                    </div>
+
+                    <div class="divAddInfoEmp">
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="mb-3 col-sm-12 col-md-6">
+                                <label for="exampleInputPassword1" class="form-label">Titulo:</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" maxlength="13">
+                            </div>
+                            <div class="mb-3 col-sm-12 col-md-6">
+                                <label for="exampleInputPassword1" class="form-label">Autor(a):</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" maxlength="13">
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="exampleInputPassword1" class="form-label">Sinopse:</label>
+                            <textarea class="form-control" placeholder="Leave a comment here" rows="4"></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-sm-12 col-md-6">
+                                <label for="exampleInputPassword1" class="form-label">Data de Publicação:</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" maxlength="13">
+                            </div>
+                            <div class="mb-3 col-sm-12 col-md-6">
+                                <label for="exampleInputPassword1" class="form-label">Quantidade de Cópias:</label>
+                                <input type="text" class="form-control" id="exampleInputPassword1" maxlength="13">
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-primary" onclick="procurarLivro();">Procurar Livro</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
 </div>

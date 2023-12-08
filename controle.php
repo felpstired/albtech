@@ -19,6 +19,10 @@ switch ($acao) {
         include_once './pages/logout.php';
         break;
 
+    case 'consultaISBN':
+        include_once './pages/livros/consultaISBN.php';
+        break;
+
 
     // navegação da página     
     case 'home':

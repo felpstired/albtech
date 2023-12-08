@@ -307,3 +307,7 @@ table {
         font-size: 2vw;
     }
 }
+
+.modal-content {
+    border: none;
+}

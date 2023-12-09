@@ -11,7 +11,7 @@
             <div class="col-8 col-sm-8 col-md-8">
                 <div class="alinharVH d-flex justify-content-center flex-column">
                     <h1>Gerenciamento de Empréstimos</h1>
-                    <a href="#">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddLivro">
                         <h4>Registrar novo empréstimo</h4>
                     </a>
                 </div>
@@ -33,8 +33,6 @@
                             <select name="tipopesquisa" id="tipopesquisa" required>
                                 <option value="0" selected>Livro - Título</option>
                                 <option value="1">Livro - ISBN</option>
-                                <option value="2">Usuário - Nome</option>
-                                <option value="3">Usuário - CPF</option>
                             </select>
                         </div>
                     </div>
@@ -68,8 +66,6 @@
                             <select name="tipopesquisa" id="tipopesquisa" required>
                                 <option value="0" selected>Livro - Título</option>
                                 <option value="1">Livro - ISBN</option>
-                                <option value="2">Usuário - Nome</option>
-                                <option value="3">Usuário - CPF</option>
                             </select>
                         </div>
                     </div>
@@ -96,10 +92,10 @@
                 <thead class="table-dark">
                     <tr>
                         <th scope="col" width="5%">ID</th>
-                        <th scope="col" width="15%">Usuário</th>
-                        <th scope="col" width="30%">Livro</th>
-                        <th scope="col" width="18%">Empréstimo</th>
-                        <th scope="col" width="18%" class="showtd">Devolução</th>
+                        <th scope="col" width="15%">Título</th>
+                        <th scope="col" width="30%">Sinopse</th>
+                        <th scope="col" width="18%">Autor</th>
+                        <th scope="col" width="18%" class="showtd">Data de Publicação</th>
                         <th scope="col" width="14%">Ações</th>
                     </tr>
                 </thead>
@@ -218,4 +214,85 @@
 
     </div>
 
+</div>
+
+<div class="modal fade" tabindex="-1" id="modalAddLivro" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h3 class="modal-title">Novo Registro de Empréstimo</h3>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="#" method="post" id="frmAddEmp" name="frmAddEmp">
+
+                <div class="modal-body fs-5">
+                    <div class="mb-3" id="inputISBN">
+                        <label for="livroISBN" class="form-label">ISBN:</label>
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="livroISBN" name="livroISBN" placeholder="Insira o ISBN" maxlength="13">
+                            <button type="button" class="btn btn-primary botaoISBN" onclick="procurarLivro();">Procurar Livro <span class="mdi mdi-magnify"></span></button>
+                        </div>
+                    </div>
+
+                    <div class="divAddInfoEmp">
+
+                        <hr>
+
+                        <div class="row">
+                            <div class="mb-3 col-sm-12 col-md-6">
+                                <label for="livroTitulo" class="form-label">Titulo:</label>
+                                <input type="text" class="form-control" id="livroTitulo" name="livroTitulo" placeholder="Insira o título do livro" required>
+                            </div>
+                            <div class="mb-3 col-sm-12 col-md-6">
+                                <label for="livroAutor" class="form-label">Autor(a):</label>
+                                <input type="text" class="form-control" id="livroAutor" name="livroAutor" placeholder="Informe o(s) autor(es) do livro" required>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="livroDesc" class="form-label">Descrição:</label>
+                            <textarea class="form-control" id="livroDesc" name="livroDesc" placeholder="Insira a descrição do livro" rows="5" required></textarea>
+                        </div>
+
+                        <div class="row">
+                            <div class="mb-3 col-sm-12 col-md-4">
+                                <label for="livroPubli" class="form-label">Data de Publicação:</label>
+                                <input type="text" class="form-control" id="livroPubli" name="livroPubli" placeholder="AAAA/MM/DD" required>
+                            </div>
+                            <div class="mb-3 col-sm-12 col-md-4">
+                                <label for="livroCopias" class="form-label">Quantidade de Cópias:</label>
+                                <input type="text" class="form-control" id="livroCopias" name="livroCopias" placeholder="Insira a quantidade de cópias" required>
+                            </div>
+                            <div class="mb-3 col-sm-12 col-md-4">
+                                <label for="livroTipo" class="form-label">Tipo de Arquivo:</label>
+                                <select class="form-select" id="livroTipo" name="livroTipo" required>
+                                    <option value="0" selected>Selecione o tipo</option>
+                                    <option value="1">Livro</option>
+                                    <option value="2">Artigo Científico</option>
+                                    <option value="3">Monografia</option>
+                                    <option value="4">Apostila</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="livroLink" class="form-label">Capa (Link):</label>
+                            <input type="text" class="form-control" id="livroLink" name="livroLink" placeholder="Insira o link com a capa do livro" required>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
 </div>

@@ -311,3 +311,18 @@ table {
 .modal-content {
     border: none;
 }
+
+
+@media (max-width: 576px) {
+    .botaoISBN {
+        width: 100%;
+    }
+}
+
+.erroInput {
+    border: 1px solid #d33;
+}
+
+#livroDesc {
+    resize: none;
+}

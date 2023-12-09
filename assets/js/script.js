@@ -169,7 +169,18 @@ function Login() {
 
 function procurarLivro() {
 
+    var inputISBN = document.getElementById('livroISBN');
+
     var isbn = $('#livroISBN').val();
+
+    if (isbn === '') {
+        inputISBN.classList.toggle('erroInput');
+        return;
+    }
+
+    if (inputISBN.classList.contains('erroInput')) {
+        inputISBN.classList.toggle('erroInput');
+    }
 
     var dados = {
         acao: 'consultaISBN',
@@ -185,9 +196,23 @@ function procurarLivro() {
             console.log('Antes de enviar');
         },
         success: function (retorno) {
-            console.log('Depois de enviar');
 
             console.log(retorno);
+
+            var status = retorno.status;
+            var dadosArray = retorno.dadosArray;
+
+            if (status == 'OK') {
+
+                $('input#livroTitulo').val(dadosArray['titulo']);
+                $('input#livroAutor').val(dadosArray['autor']);
+                $('textarea#livroDesc').val(dadosArray['desc']);
+                $('input#livroPubli').val(dadosArray['dataPubli']);
+                $('input#livroLink').val(dadosArray['linkCapa']);
+                
+            } else {
+                msgGeral('ERRO: ' + dadosArray + ' Tente novamente mais tarde.', 'error');
+            }
 
         }
 

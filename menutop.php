@@ -29,7 +29,7 @@
                             <img src="./assets/img/logo.png" alt="">
                         </div>
                         <div class="col-9">
-                            <h4><?php echo $_SESSION['dadosUser']['nome']; ?></h4>
+                            <h3><?php echo $_SESSION['dadosUser']['nome']; ?></h3>
                             <a href="#" class="linkMenu" idMenu="">Alterar Dados</a>
                         </div>
                     </div>

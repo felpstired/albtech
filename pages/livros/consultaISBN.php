@@ -6,7 +6,7 @@ include_once './functions/dashboard.php';
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-$isbn = $dados['isbn'];
+$isbn = str_replace('-', '', $dados['isbn']);
 
 $api_url = "https://www.googleapis.com/books/v1/volumes?q=isbn:" . $isbn;
 
@@ -39,7 +39,7 @@ if ($response !== false) {
         if (isset($livro['publishedDate'])) {
             $dataPubli = $livro['publishedDate'];
         } else {
-            $dataPubli = 'Data de publicação não disponível.';
+            $dataPubli = false;
         }
 
         if (isset($livro['imageLinks']['thumbnail'])) {

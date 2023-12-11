@@ -13,7 +13,7 @@ if (isset($dados['emailLogin']) && !empty($dados['emailLogin'])) {
     die();
 }
 
-$existeEmail = listarRegistrosStr('senha', 'usuarios', 'email', $email);
+$existeEmail = listarRegistrosStr('senha', 'tbusuarios', 'email', $email);
 
 if ($existeEmail == 'Vazio') {
     echo json_encode('E-mail não cadastrado.');
@@ -36,7 +36,7 @@ if (!password_verify($senha, $senhaBanco)) {
     die();
 }
 
-$checarDados = checarLoginEmail('idusuarios, nome, telefone, cpf, email, senha, pontuacao, cadastro, alteracao, ativo', 'usuarios', $email, $senhaBanco);
+$checarDados = checarLoginEmail('idusuarios, nome, telefone, cpf, email, senha, pontuacao, cadastro, alteracao, ativo', 'tbusuarios', $email, $senhaBanco);
 
 if ($checarDados == 'false') {
     echo json_encode('E-mail e/ou senha incorretos.');
@@ -45,19 +45,30 @@ if ($checarDados == 'false') {
 
     foreach ($checarDados as $itemDados) {
 
-        $_SESSION['dadosUser'] = array(
-            "id" => $itemDados->idusuarios,
-            "nome" => $itemDados->nome,
-            "telefone" => $itemDados->telefone,
-            "cpf" => $itemDados->cpf,
-            "email" => $itemDados->email,
-            "pontuacao" => $itemDados->pontuacao,
-            "cadastro" => $itemDados->cadastro,
-            "alteracao" => $itemDados->alteracao,
-            "ativo" => $itemDados->ativo
-        );
+        $checarAdm = checarAdm($itemDados->idusuarios);
+
+        if ($checarAdm == 'false') {
+            echo json_encode('Este usuário não possui permissão.');
+            die();
+        } else {
+
+            $_SESSION['dadosUser'] = array(
+                "id" => $itemDados->idusuarios,
+                "nome" => $itemDados->nome,
+                "telefone" => $itemDados->telefone,
+                "cpf" => $itemDados->cpf,
+                "email" => $itemDados->email,
+                "pontuacao" => $itemDados->pontuacao,
+                "cadastro" => $itemDados->cadastro,
+                "alteracao" => $itemDados->alteracao,
+                "ativo" => $itemDados->ativo
+            );
+
+        }
+
     }
 
     echo json_encode('OK');
     die();
-} 
+
+}

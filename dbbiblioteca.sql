@@ -1,0 +1,107 @@
+﻿CREATE DATABASE dbbiblioteca;
+
+USE dbbiblioteca;
+
+
+CREATE TABLE tbusuarios(
+idusuarios INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+nome VARCHAR(45) NOT NULL,
+telefone VARCHAR(16),
+cpf VARCHAR(14) NOT NULL,
+email VARCHAR(45) NOT NULL,
+senha VARCHAR(245) NOT NULL,
+pontuacao INT NOT NULL DEFAULT 100,
+cadastro DATETIME NOT NULL,
+alteracao TIMESTAMP NOT NULL,
+ativo CHAR(1) NOT NULL DEFAULT'A' ,
+PRIMARY KEY (idusuarios)
+);
+
+
+CREATE TABLE tbadm (
+idadm INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+idusuarios INTEGER UNSIGNED NOT NULL,
+cadastro DATETIME NOT NULL,
+alteracao TIMESTAMP NOT NULL,
+ativo CHAR(1) NOT NULL DEFAULT 'A',
+PRIMARY KEY (idadm, idusuarios),
+CONSTRAINT FK_adm_usuarios FOREIGN KEY (idusuarios) REFERENCES tbusuarios(idusuarios)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+
+CREATE TABLE tbtipoLivro(
+idtipoLivro INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+tipoLivro VARCHAR(45) NOT NULL,
+cadastro DATETIME NOT NULL,
+alteracao TIMESTAMP NOT NULL,
+ativo CHAR(1) NOT NULL DEFAULT'A' ,
+PRIMARY KEY (idtipoLivro)
+);
+
+
+CREATE TABLE tblivro(
+idlivro INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+idtipoLivro INTEGER UNSIGNED NOT NULL,
+titulo VARCHAR(245) NOT NULL,
+autor TEXT NOT NULL,
+datapubli DATE NOT NULL,
+descricao LONGTEXT NOT NULL,
+capa VARCHAR(90),
+numpags INT NOT NULL,
+isbn VARCHAR(14),
+quantidade INT NOT NULL,
+cadastro DATETIME NOT NULL,
+alteracao TIMESTAMP NOT NULL,
+ativo CHAR(1) NOT NULL DEFAULT 'A',
+PRIMARY KEY (idlivro, idtipoLivro),
+CONSTRAINT FK_tblivro_tbtipoLivro FOREIGN KEY (idtipoLivro) REFERENCES tbtipoLivro(idtipoLivro)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+
+CREATE TABLE tbemprestimo(
+idemprestimo INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+idlivro INTEGER UNSIGNED NOT NULL,
+idusuarios INTEGER UNSIGNED NOT NULL,
+datadevolucao DATE NOT NULL,
+cadastro DATETIME NOT NULL,
+alteracao TIMESTAMP NOT NULL,
+ativo CHAR(1) NOT NULL DEFAULT 'A',
+PRIMARY KEY (idemprestimo, idlivro, idusuarios),
+CONSTRAINT FK_tbemprestimo_tblivro FOREIGN KEY (idlivro) REFERENCES tblivro(idlivro)
+ON DELETE CASCADE
+ON UPDATE CASCADE,
+CONSTRAINT FK_tbemprestimo_tbusuarios FOREIGN KEY (idusuarios) REFERENCES tbusuarios(idusuarios)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+
+CREATE TABLE tbdevolucoes(
+iddevolucoes INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+idemprestimo INTEGER UNSIGNED NOT NULL,
+tempoemprestimo VARCHAR(15),
+diasAtraso INT,
+statusdevol VARCHAR(15),
+cadastro DATETIME NOT NULL,
+alteracao TIMESTAMP NOT NULL,
+ativo CHAR(1) NOT NULL DEFAULT 'A',
+PRIMARY KEY (iddevolucoes, idemprestimo),
+CONSTRAINT FK_tbdevolucoes_tbemprestimo FOREIGN KEY (idemprestimo) REFERENCES tbemprestimo(idemprestimo)
+ON DELETE CASCADE
+ON UPDATE CASCADE
+);
+
+
+CREATE TABLE tblog(
+idlog INTEGER UNSIGNED NOT NULL AUTO_INCREMENT,
+titulolog VARCHAR (45),
+desclog VARCHAR (245),
+cadastro DATETIME NOT NULL,
+alteracao TIMESTAMP NOT NULL,
+ativo CHAR(1) NOT NULL DEFAULT 'A',
+PRIMARY KEY (idlog)
+);

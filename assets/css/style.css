@@ -164,6 +164,11 @@ body {
     color: #1b5858;
 }
 
+.userInfo h3, userInfo a {
+    font-size: 15px;
+
+}
+
 .navbar-nav .row .col-3 span {
     font-size: 28px;
 }
@@ -271,7 +276,7 @@ body {
 }
 
 .dashboardLista table thead {
-    font-size: 1.1vw;
+    font-size: 1.2vw;
 }
 
 .dashboardLista th, .dashboardLista td {
@@ -286,10 +291,19 @@ body {
 
 }
 
-
-
 table {
-    font-size: smaller;
+    font-size: 1.2vw;
+}
+
+.btn {
+    font-size: 1.2vw;
+    margin-bottom: 3px;
+}
+
+@media (max-width: 576px) {
+    .dashboardLista table thead, table, .btn {
+        font-size: 2vw;
+    }
 }
 
 /* -------------------- */

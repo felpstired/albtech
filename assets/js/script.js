@@ -62,6 +62,10 @@ function masks() {
         mask: '99/9999'
     });
 
+    $('.maskNumber').inputmask({
+        mask: '9999'
+    });
+
 }
 
 // função de atualizar páginas
@@ -80,6 +84,26 @@ function listarPage(listar) {
 
         }, success: function (retorno) {
             $('div#content').html(retorno);
+        }
+    });
+}
+
+// função para atualizar as tabelas
+function listarPageTab(listar) {
+
+    let dados = {
+        acao: listar,
+    };
+
+    $.ajax({
+        type: "POST",
+        dataType: 'html',
+        url: 'controle.php',
+        data: dados,
+        beforeSend: function () {
+
+        }, success: function (retorno) {
+            $('div#contentTable').html(retorno);
         }
     });
 }
@@ -115,111 +139,70 @@ function loadingEnd() {
 
 
 // FUNÇÕES ADM
+
+var sendLogin = false;
 function Login() {
+    
+    if (!sendLogin) {
 
-    $('#frmLogin').submit(function (event) {
-        event.preventDefault();
+        $('#frmLogin').submit(function (event) {
+            event.preventDefault();
 
-        console.log('Clicou em entrar');
+            // console.log('Clicou em entrar');
 
-        let dadosForm = $(this).serializeArray();
+            let dadosForm = $(this).serializeArray();
 
-        console.log(dadosForm);
+            // console.log(dadosForm);
 
-        dadosForm.push(
-            { name: 'acao', value: 'Login' },
-        )
+            dadosForm.push(
+                { name: 'acao', value: 'Login' },
+            )
 
-        $.ajax({
-            type: 'POST',
-            dataType: 'json',
-            url: 'controle.php',
-            data: dadosForm,
-            beforeSend: function () {
-                console.log('Antes de enviar');
-            },
-            success: function (retorno) {
-                console.log('Depois de enviar');
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: 'controle.php',
+                data: dadosForm,
+                beforeSend: function () {
+                    // console.log('Antes de enviar');
+                },
+                success: function (retorno) {
+                    // console.log('Depois de enviar');
 
-                console.log(retorno);
+                    // console.log(retorno);
 
-                if (retorno === 'OK') {
+                    if (retorno === 'OK') {
 
-                    msgGeral('Login efetuado com sucesso!', 'success');
+                        msgGeral('Login efetuado com sucesso!', 'success');
 
-                    setTimeout(function () {
-                        listarPage('home');
-                        window.location.reload();
-                    }, 1500);
+                        setTimeout(function () {
+                            listarPage('home');
+                            window.location.reload();
+                        }, 1500);
 
-                } else {
+                    } else {
 
-                    msgGeral('ERRO: ' + retorno + ' Tente novamente mais tarde.', 'error');
+                        msgGeral('ERRO: ' + retorno + ' Tente novamente mais tarde.', 'error');
+
+                    }
 
                 }
 
-            }
+            });
 
         });
 
-    });
+        sendLogin = true;
 
-}
-
-
-function procurarLivro() {
-
-    var inputISBN = document.getElementById('livroISBN');
-
-    var isbn = $('#livroISBN').val();
-
-    if (isbn === '') {
-        inputISBN.classList.toggle('erroInput');
         return;
+
+    } else {
+
+        return;
+
     }
-
-    if (inputISBN.classList.contains('erroInput')) {
-        inputISBN.classList.toggle('erroInput');
-    }
-
-    var dados = {
-        acao: 'consultaISBN',
-        isbn: isbn,
-    }
-
-    $.ajax({
-        type: 'POST',
-        dataType: 'json',
-        url: 'controle.php',
-        data: dados,
-        beforeSend: function () {
-            console.log('Antes de enviar');
-        },
-        success: function (retorno) {
-
-            console.log(retorno);
-
-            var status = retorno.status;
-            var dadosArray = retorno.dadosArray;
-
-            if (status == 'OK') {
-
-                $('input#livroTitulo').val(dadosArray['titulo']);
-                $('input#livroAutor').val(dadosArray['autor']);
-                $('textarea#livroDesc').val(dadosArray['desc']);
-                $('input#livroPubli').val(dadosArray['dataPubli']);
-                $('input#livroLink').val(dadosArray['linkCapa']);
-                
-            } else {
-                msgGeral('ERRO: ' + dadosArray + ' Tente novamente mais tarde.', 'error');
-            }
-
-        }
-
-    });
 
 }
-
 
 function Logout() {
 
@@ -279,8 +262,66 @@ function Logout() {
 
 
 
+var divError = document.getElementById('errorMsg');
 
-// FUNÇÕES DE CADASTRAR, ALTERAR E EXCLUIR
+function procurarLivro() {
+
+    var inputISBN = document.getElementById('livroISBN');
+
+    var isbn = $('#livroISBN').val();
+
+    if (isbn === '') {
+        $(divError).html('Você precisa informar o ISBN do livro!');
+        inputISBN.classList.toggle('erroInput');
+        return;
+    }
+
+    if (inputISBN.classList.contains('erroInput')) {
+        $(divError).html('');
+        inputISBN.classList.toggle('erroInput');
+    }
+
+    var dados = {
+        acao: 'consultaISBN',
+        isbn: isbn,
+    }
+
+    $.ajax({
+        type: 'POST',
+        dataType: 'json',
+        url: 'controle.php',
+        data: dados,
+        beforeSend: function () {
+            console.log('Antes de enviar');
+        },
+        success: function (retorno) {
+
+            console.log(retorno);
+
+            var status = retorno.status;
+            var dadosArray = retorno.dadosArray;
+
+            if (status == 'OK') {
+
+                $('input#livroTitulo').val(dadosArray['titulo']);
+                $('input#livroAutor').val(dadosArray['autor']);
+                $('textarea#livroDesc').val(dadosArray['desc']);
+                $('input#livroPubli').val(dadosArray['dataPubli']);
+                $('input#livroLink').val(dadosArray['linkCapa']);
+                $('input#livroPags').val(dadosArray['numPags']);
+
+            } else {
+                msgGeral('ERRO: ' + dadosArray + ' Tente novamente mais tarde.', 'error');
+            }
+
+        }
+
+    });
+
+}
+
+
+// FUNÇÕES DE CADASTRAR, VER MAIS, ALTERAR E EXCLUIR
 
 
 // AÇÕES USUARIO
@@ -313,7 +354,6 @@ function addUser() {
                 url: 'controle.php',
                 data: dadosForm,
                 beforeSend: function () {
-
                 },
                 success: function (retorno) {
 
@@ -340,5 +380,123 @@ function addUser() {
         return;
 
     }
+
+}
+
+function verUser(id, modal) {
+
+    var dados = {
+        acao: 'verUser',
+        id: id,
+    };
+
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: 'controle.php',
+        data: dados,
+        beforeSend: function () {
+        }, success: function (retorno) {
+
+            var status = retorno.status;
+            var dadosArray = retorno.dadosArray;
+
+            if (status === 'OK') {
+                $('span#idUserMais').html(dadosArray['id']);
+                $('span#nomeUserMais').html(dadosArray['nome']);
+                $('span#emailUserMais').html(dadosArray['email']);
+                $('span#cpfUserMais').html(dadosArray['cpf']);
+                $('span#telUserMais').html(dadosArray['tel']);
+                $('span#pontUserMais').html(dadosArray['pont']);
+                $('span#cadUserMais').html(dadosArray['cad']);
+                $('span#altUserMais').html(dadosArray['alt']);
+                $('span#statusUserMais').html(dadosArray['status']);
+
+                $('#' + modal).modal('show');
+            } else {
+
+                $('div#infoUserMais').html('' +
+                    '<div class="w-100 alert-danger" role="alert">'+ dadosArray +'</div>'
+                );
+
+                $('#' + modal).modal('show');
+
+            }
+
+        }
+    });
+
+}
+
+
+
+
+// FUNÇÃO DE DELETAR GERAL
+
+var sendDelete = false;
+
+function msgDelete(id, acao, page) {
+
+    if (!sendDelete) {
+
+        Swal.fire({
+            title: 'Você tem certeza?',
+            text: "Essa ação não pode ser desfeita!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'Não, cancelar!',
+            confirmButtonText: 'Sim, apagar registro!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                var dados = {
+                    acao: acao,
+                    id: id,
+                };
+
+                $.ajax({
+                    type: "POST",
+                    dataType: 'json',
+                    url: 'controle.php',
+                    data: dados,
+                    beforeSend: function () {
+
+                    }, success: function (retorno) {
+
+                        if (retorno === 'OK') {
+                            Swal.fire({
+                                title: 'Apagado!',
+                                text: 'O registro foi deletado com sucesso.',
+                                icon: 'success',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                            listarPageTab(page);
+                        } else {
+                            Swal.fire({
+                                title: 'Erro!',
+                                text: retorno,
+                                icon: 'error',
+                                showConfirmButton: true,
+                            })
+                            listarPageTab(page);
+                        }
+
+                    }
+                });
+            }
+        })
+
+    sendDelete = true;
+
+    return;
+
+} else {
+
+    return;
+
+}
 
 }

@@ -87,7 +87,7 @@
             </form>
         </div>
 
-        <div class="dashboardLista mt-5">
+        <div id="listarTable" class="dashboardLista mt-5">
             <table class="table table-hover table-stripped table-borderless text-center rounded-5">
                 <thead class="table-dark">
                     <tr>
@@ -220,19 +220,20 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
-                <h3 class="modal-title">Novo Registro de Empréstimo</h3>
+                <h3 class="modal-title">Novo Registro de Livro</h3>
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form action="#" method="post" id="frmAddEmp" name="frmAddEmp">
+            <form action="#" method="post" id="frmAddLiv" name="frmAddEmp">
 
                 <div class="modal-body fs-5">
                     <div class="mb-3" id="inputISBN">
                         <label for="livroISBN" class="form-label">ISBN:</label>
                         <div class="input-group">
-                            <input type="text" class="form-control" id="livroISBN" name="livroISBN" placeholder="Insira o ISBN" maxlength="13">
+                            <input type="text" class="form-control" id="livroISBN" name="livroISBN" placeholder="Insira o ISBN" maxlength="14">
                             <button type="button" class="btn btn-primary botaoISBN" onclick="procurarLivro();">Procurar Livro <span class="mdi mdi-magnify"></span></button>
                         </div>
+                        <div id="errorMsg" class="form-text text-danger"></div>
                     </div>
 
                     <div class="divAddInfoEmp">
@@ -252,26 +253,57 @@
 
                         <div class="mb-3">
                             <label for="livroDesc" class="form-label">Descrição:</label>
-                            <textarea class="form-control" id="livroDesc" name="livroDesc" placeholder="Insira a descrição do livro" rows="5" required></textarea>
+                            <textarea class="form-control" id="livroDesc" name="livroDesc" placeholder="Insira a descrição do livro" rows="3" required></textarea>
                         </div>
 
                         <div class="row">
                             <div class="mb-3 col-sm-12 col-md-4">
                                 <label for="livroPubli" class="form-label">Data de Publicação:</label>
-                                <input type="text" class="form-control" id="livroPubli" name="livroPubli" placeholder="AAAA/MM/DD" required>
+                                <input type="date" class="form-control" id="livroPubli" name="livroPubli" placeholder="AAAA/MM/DD" max="<?php echo date('Y-m-d'); ?>" required>
                             </div>
                             <div class="mb-3 col-sm-12 col-md-4">
                                 <label for="livroCopias" class="form-label">Quantidade de Cópias:</label>
-                                <input type="text" class="form-control" id="livroCopias" name="livroCopias" placeholder="Insira a quantidade de cópias" required>
+                                <input type="text" class="form-control maskNumber" id="livroCopias" name="livroCopias" placeholder="Insira a quantidade de cópias" required>
                             </div>
                             <div class="mb-3 col-sm-12 col-md-4">
                                 <label for="livroTipo" class="form-label">Tipo de Arquivo:</label>
                                 <select class="form-select" id="livroTipo" name="livroTipo" required>
-                                    <option value="0" selected>Selecione o tipo</option>
-                                    <option value="1">Livro</option>
-                                    <option value="2">Artigo Científico</option>
-                                    <option value="3">Monografia</option>
-                                    <option value="4">Apostila</option>
+                                    <?php
+
+                                    $listarTipo = listarGeral('idtipoLivro, tipoLivro', 'tbtipolivro');
+
+                                    if ($listarTipo == 'Vazio') {
+
+                                        ?>
+
+                                        <option selected>Sem opções!</option>
+
+                                        <?php
+
+                                    } else {
+
+                                        ?>
+
+                                        <option selected>Selecione o tipo</option>
+
+                                        <?php
+
+                                        foreach ($listarTipo as $tipo) {
+
+                                            $idTipo = $tipo->idtipoLivro;
+                                            $tipoLiv = $tipo->tipoLivro;
+
+                                            ?>
+
+                                            <option value="<?php echo $idTipo; ?>"><?php echo $tipoLiv; ?></option>
+
+                                            <?php
+
+                                        }
+
+                                    }
+
+                                    ?>
                                 </select>
                             </div>
                         </div>

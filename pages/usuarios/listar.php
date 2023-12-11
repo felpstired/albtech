@@ -11,7 +11,7 @@
             <div class="col-8 col-sm-8 col-md-8">
                 <div class="alinharVH d-flex justify-content-center flex-column">
                     <h1>Gerenciamento de Usuários</h1>
-                    <a href="#">
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddUser">
                         <h4>Registrar novo Usuário</h4>
                     </a>
                 </div>
@@ -101,7 +101,7 @@
 
 </div>
 
-<div class="modal fade" tabindex="-1" id="modalAddLivro" aria-hidden="true">
+<div class="modal fade" tabindex="-1" id="modalAddUser" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
@@ -128,7 +128,7 @@
                             <label for="livroDesc" class="form-label">Descrição:</label>
                             <textarea class="form-control" id="livroDesc" name="livroDesc" placeholder="Insira a descrição do livro" rows="3" required></textarea>
                         </div>
-                    
+
                 </div>
 
 

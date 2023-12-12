@@ -3036,6 +3036,32 @@ function insertCinco($tabela, $campos, $valeu1, $valeu2, $valeu3, $valeu4, $vale
     $conn = null;
 }
 
+function insertCincoCad($tabela, $campos, $valeu1, $valeu2, $valeu3, $valeu4, $valeu5)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqInsert = $conn->prepare("INSERT INTO $tabela($campos)VALUES(?,?,?,?,?,NOW())");
+        $sqInsert->bindValue(1, $valeu1, PDO::PARAM_STR);
+        $sqInsert->bindValue(2, $valeu2, PDO::PARAM_STR);
+        $sqInsert->bindValue(3, $valeu3, PDO::PARAM_STR);
+        $sqInsert->bindValue(4, $valeu4, PDO::PARAM_STR);
+        $sqInsert->bindValue(5, $valeu5, PDO::PARAM_STR);
+        $sqInsert->execute();
+        $conn->commit();
+        if ($sqInsert->rowCount() > 0) {
+            return 'Gravado';
+        } else {
+            return 'nGravado';
+        };
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
+
 function insertCincoId($tabela, $campos, $value1, $value2, $value3, $value4, $value5)
 {
     $conn = conectar();

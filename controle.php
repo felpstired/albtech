@@ -61,6 +61,9 @@ switch ($acao) {
     case 'listarUser':
         include_once './pages/usuarios/listarTable.php';
         break;
+    case 'addUser':
+        include_once './pages/usuarios/add.php';
+        break;
     case 'verUser':
         include_once './pages/usuarios/ver.php';
         break;

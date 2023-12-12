@@ -165,7 +165,7 @@ body {
 }
 
 .userInfo h3, userInfo a {
-    font-size: 15px;
+    font-size: 19px;
 
 }
 
@@ -250,7 +250,7 @@ body {
     outline: none;
 }
 
-.pesquisaLista button {
+/* .pesquisaLista button {
     padding: 5px 10px;
     font-size: 22px;
     border-radius: 5px;
@@ -262,12 +262,20 @@ body {
 
 .pesquisaLista button:hover {
     background-color: #414141;    
-}
+} */
 
 .alinharVH {
     width: 100%;
     height: 100%;
     word-break: normal;
+}
+
+.dashboardLista {
+    height: 100%;
+}
+
+.btn-success {
+    background-color: #18afaf;
 }
 
 .dashboardLista table {
@@ -326,6 +334,9 @@ table {
     border: none;
 }
 
+.modal button {
+    font-size: 18px;
+}
 
 @media (max-width: 576px) {
     .botaoISBN {
@@ -335,6 +346,7 @@ table {
 
 .erroInput {
     border: 1px solid #d33;
+    color: rgb(156, 40, 40);
 }
 
 #livroDesc {

@@ -23,7 +23,8 @@
     <div class="corpoListar mt-4">
 
         <div class="pesquisaLista">
-            <form action="#" method="post" id="listaSearch" name="listaSearch">
+            
+            <!-- <form action="#" method="post" id="listaSearch" name="listaSearch">
 
                 <div class="row">
 
@@ -40,7 +41,7 @@
                     <div class="col-12 col-xl-4 col-xxl-6">
                         <div class="alinharVH d-flex align-items-center justify-content-center column-gap-3">
                             <input type="text" name="textoPesquisa" placeholder="Pesquise aqui..." maxlength="180" required>
-                            <button type="submit"><span class="mdi mdi-magnify"></span></button>
+                            <button type="submit" class><span class="mdi mdi-magnify"></span></button>
                         </div>
                     </div>
 
@@ -84,10 +85,11 @@
 
                 </div>
 
-            </form>
+            </form> -->
+
         </div>
 
-        <div id="listarTable" class="dashboardLista mt-5">
+        <div id="listarTable" class="dashboardLista mt-3">
             <table class="table table-hover table-stripped table-borderless text-center rounded-5">
                 <thead class="table-dark">
                     <tr>

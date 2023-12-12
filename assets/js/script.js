@@ -58,6 +58,10 @@ function masks() {
         mask: '999.999.999-99'
     });
 
+    $('.maskTelefone').inputmask({
+        mask: '(99) 9 9999-9999'
+    });
+
     $('.maskDate').inputmask({
         mask: '99/9999'
     });
@@ -142,7 +146,7 @@ function loadingEnd() {
 
 var sendLogin = false;
 function Login() {
-    
+
     if (!sendLogin) {
 
         $('#frmLogin').submit(function (event) {
@@ -329,12 +333,35 @@ var sendAddUser = false;
 
 function addUser() {
 
-    console.log('botao');
-
     if (!sendAddUser) {
 
         $('#frmAddUser').submit(function (event) {
             event.preventDefault();
+
+            var inputSenha = document.getElementById('senhaAddUser');
+            var inputSenha2 = document.getElementById('senhaAddUser2');
+            var senha = $("#senhaAddUser").val();
+            var senha2 = $("#senhaAddUser2").val();
+
+            if (senha2 != senha) {
+                $(divError).html('As senhas não coincidem! Favor verificar antes de prosseguir.');
+                inputSenha.classList.toggle('erroInput');
+                inputSenha2.classList.toggle('erroInput');
+                return;
+            }
+
+            if (senha2.length < 8) {
+                $(divError).html('A senha precisa conter no mínimo 8 caracteres! Favor verificar antes de prosseguir.');
+                inputSenha.classList.toggle('erroInput');
+                inputSenha2.classList.toggle('erroInput');
+                return;
+            }
+
+            if (inputSenha.classList.contains('erroInput')) {
+                $(divError).html('');
+                inputSenha.classList.toggle('erroInput');
+                inputSenha2.classList.toggle('erroInput');
+            }
 
             let form = this;
 
@@ -343,10 +370,6 @@ function addUser() {
             dadosForm.push(
                 { name: 'acao', value: 'addUser' },
             )
-
-            // var dados = {
-            //     acao: 'addCliente',
-            // }
 
             $.ajax({
                 type: 'POST',
@@ -359,10 +382,13 @@ function addUser() {
 
                     if (retorno === 'OK') {
                         $('#modalAddUser').modal('hide');
+                        $('.modal-backdrop').remove();
                         msgGeral('Cadastro efetuado com sucesso!', 'success');
+                        listarPageTab('listarUser');
                         form.reset();
                     } else {
                         msgGeral('ERRO: ' + retorno + ' Tente novamente mais tarde.', 'error');
+                        form.reset();
                     }
 
                 }
@@ -416,7 +442,7 @@ function verUser(id, modal) {
             } else {
 
                 $('div#infoUserMais').html('' +
-                    '<div class="w-100 alert-danger" role="alert">'+ dadosArray +'</div>'
+                    '<div class="w-100 alert-danger" role="alert">' + dadosArray + '</div>'
                 );
 
                 $('#' + modal).modal('show');
@@ -433,15 +459,15 @@ function verUser(id, modal) {
 
 // FUNÇÃO DE DELETAR GERAL
 
-var sendDelete = false;
+// var sendDelete = false;
 
 function msgDelete(id, acao, page) {
 
-    if (!sendDelete) {
+    // if (!sendDelete) {
 
         Swal.fire({
             title: 'Você tem certeza?',
-            text: "Essa ação não pode ser desfeita!",
+            html: "<?php echo 'aa'; ?> Essa ação não pode ser desfeita!",
             icon: 'warning',
             showCancelButton: true,
             confirmButtonColor: '#3085d6',
@@ -468,7 +494,7 @@ function msgDelete(id, acao, page) {
                         if (retorno === 'OK') {
                             Swal.fire({
                                 title: 'Apagado!',
-                                text: 'O registro foi deletado com sucesso.',
+                                html: 'O registro foi deletado com sucesso.',
                                 icon: 'success',
                                 showConfirmButton: false,
                                 timer: 1500
@@ -489,14 +515,14 @@ function msgDelete(id, acao, page) {
             }
         })
 
-    sendDelete = true;
+    //     sendDelete = true;
 
-    return;
+    //     return;
 
-} else {
+    // } else {
 
-    return;
+    //     return;
 
-}
+    // }
 
 }

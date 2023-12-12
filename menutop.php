@@ -4,7 +4,13 @@
         <div class="container-fluid">
             <div class="row w-100 text-white">
                 <div class="col-md-4 d-none d-sm-none d-md-block m-auto ps-4">
-                    <h3>Bem-vindo(a) <?php echo $_SESSION['dadosUser']['nome']; ?></h3>
+                    <h3>Bem-vindo(a) 
+                        <?php 
+                        
+                        $nome = explode(' ',trim($_SESSION['dadosUser']['nome']))[0];
+                        
+                        echo $nome; ?>
+                    </h3>
                 </div>
                 <div class="col-md-4 col-sm-6 col-6 d-flex justify-content-center align-items-center">
                     <a class="nav-link linkMenu" idMenu="home" href="#">
@@ -29,7 +35,11 @@
                             <img src="./assets/img/logo.png" alt="">
                         </div>
                         <div class="col-9">
-                            <h3><?php echo $_SESSION['dadosUser']['nome']; ?></h3>
+                            <h3><?php 
+                            
+                            $nome = explode(' ',trim($_SESSION['dadosUser']['nome']))[0];
+
+                            echo $nome; ?></h3>
                             <a href="#" class="linkMenu" idMenu="">Alterar Dados</a>
                         </div>
                     </div>

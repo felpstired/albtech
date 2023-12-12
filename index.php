@@ -44,6 +44,8 @@
     <style>
         #content {
 
+            height: 100%;
+
             <?php
 
             if (empty($_SESSION['pages'])) {

@@ -23,7 +23,7 @@
     <div class="corpoListar mt-4">
 
         <div class="pesquisaLista">
-            <form action="#" method="post" id="listaSearch" name="listaSearch">
+            <!-- <form action="#" method="post" id="listaSearch" name="listaSearch">
 
                 <div class="row">
 
@@ -86,10 +86,10 @@
 
                 </div>
 
-            </form>
+            </form> -->
         </div>
 
-        <div id="contentTable" class="dashboardLista mt-5">
+        <div id="contentTable" class="dashboardLista mt-3">
             <?php
 
             include_once 'listarTable.php';
@@ -113,28 +113,45 @@
 
                 <div class="modal-body fs-5">
 
-                        <div class="row">
-                            <div class="mb-3 col-sm-12 col-md-6">
-                                <label for="livroTitulo" class="form-label">Titulo:</label>
-                                <input type="text" class="form-control" id="livroTitulo" name="livroTitulo" placeholder="Insira o título do livro" required>
-                            </div>
-                            <div class="mb-3 col-sm-12 col-md-6">
-                                <label for="livroAutor" class="form-label">Autor(a):</label>
-                                <input type="text" class="form-control" id="livroAutor" name="livroAutor" placeholder="Informe o(s) autor(es) do livro" required>
-                            </div>
-                        </div>
+                    <div class="mb-3">
+                        <label for="nomeAddUser" class="form-label"><span class="mdi mdi-account"></span> Nome:</label>
+                        <input type="text" class="form-control" id="nomeAddUser" name="nomeAddUser" placeholder="Insira seu nome..." maxlength="120" required>
+                    </div>
 
-                        <div class="mb-3">
-                            <label for="livroDesc" class="form-label">Descrição:</label>
-                            <textarea class="form-control" id="livroDesc" name="livroDesc" placeholder="Insira a descrição do livro" rows="3" required></textarea>
+                    <div class="row">
+                        <div class="mb-3 col-sm-12 col-md-6">
+                            <label for="cpfAddUser" class="form-label"><span class="mdi mdi-at"></span> CPF:</label>
+                            <input type="text" class="form-control maskCPF" id="cpfAddUser" name="cpfAddUser" placeholder="123.456.789-10" maxlength="120" required>
                         </div>
+                        <div class="mb-3 col-sm-12 col-md-6">
+                            <label for="telAddUser" class="form-label"><span class="mdi mdi-phone"></span> Telefone:</label>
+                            <input type="text" class="form-control maskTelefone" id="telAddUser" name="telAddUser" placeholder="(33) 9 9999-9999" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="emailAddUser" class="form-label">E-mail:</label>
+                        <input type="email" class="form-control" id="emailAddUser" name="emailAddUser" placeholder="Insira seu email..." required>
+                    </div>
+
+                    <div class="row">
+                        <div class="mb-3 col-sm-12 col-md-6">
+                            <label for="senhaAddUser" class="form-label"><span class="mdi mdi-lock"></span> Senha:</label>
+                            <input type="password" class="form-control" id="senhaAddUser" name="senhaAddUser" placeholder="Digite uma senha..." maxlength="120" required>
+                        </div>
+                        <div class="mb-3 col-sm-12 col-md-6">
+                            <label for="senhaAddUser2" class="form-label"><span class="mdi mdi-lock-alert"></span> Repita sua senha:</label>
+                            <input type="password" class="form-control" id="senhaAddUser2" name="senhaAddUser2" placeholder="Confirme sua senha..." required>
+                        </div>
+                    </div>
+                    <div id="errorMsg" class="form-text text-danger"></div>
 
                 </div>
 
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="submit" class="btn btn-success" onclick="addUser();">Cadastrar Usuário</button>
                 </div>
 
             </form>

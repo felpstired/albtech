@@ -46,7 +46,6 @@ $inserir = insertCincoCad('tbusuarios', 'nome, telefone, cpf, email, senha, cada
 
 if ($inserir == 'Gravado') {
     echo json_encode('OK');
-    $_SESSION['cpf'] = $cpf;
     die();
 } else if ($inserir == 'nGravado') {
     echo json_encode('Não foi possível cadastrar os dados.');

@@ -40,7 +40,7 @@
                             $nome = explode(' ',trim($_SESSION['dadosUser']['nome']))[0];
 
                             echo $nome; ?></h3>
-                            <a href="#" class="linkMenu" idMenu="">Alterar Dados</a>
+                            <a href="#" class="linkMenu" idMenu="AltUser">Alterar Dados</a>
                         </div>
                     </div>
                 </div>

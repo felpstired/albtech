@@ -3538,6 +3538,59 @@ function updateInt($tabela, $campoAlt, $valorAlt, $campoRef, $valorRef)
     $conn = null;
 }
 
+function updateSession2($tabela, $nome, $tel, $email, $id)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+
+        $sqUpdate = $conn->prepare("UPDATE $tabela SET nome = ?, telefone = ?, email = ? WHERE idusuarios = ? ");
+        $sqUpdate->bindValue(1, $nome, PDO::PARAM_STR);
+        $sqUpdate->bindValue(2, $tel, PDO::PARAM_STR);
+        $sqUpdate->bindValue(3, $email, PDO::PARAM_STR);
+        $sqUpdate->bindValue(4, $id, PDO::PARAM_INT);
+        $sqUpdate->execute();
+        $conn->commit();
+        if ($sqUpdate->rowCount() > 0) {
+            return 'Atualizado';
+        } else {
+            return 'nAtualizado';
+        };
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
+
+function updateSession1($tabela, $nome, $tel, $email, $senha, $id)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+
+        $sqUpdate = $conn->prepare("UPDATE $tabela SET nome = ?, telefone = ?, email = ?, senha = ? WHERE idusuarios = ? ");
+        $sqUpdate->bindValue(1, $nome, PDO::PARAM_STR);
+        $sqUpdate->bindValue(2, $tel, PDO::PARAM_STR);
+        $sqUpdate->bindValue(3, $email, PDO::PARAM_STR);
+        $sqUpdate->bindValue(4, $senha, PDO::PARAM_STR);
+        $sqUpdate->bindValue(5, $id, PDO::PARAM_INT);
+        $sqUpdate->execute();
+        $conn->commit();
+        if ($sqUpdate->rowCount() > 0) {
+            return 'Atualizado';
+        } else {
+            return 'nAtualizado';
+        };
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
+
 function updateIntA($tabela, $campoAlt, $valorAlt, $campoRef, $valorRef, $ativo)
 {
     $conn = conectar();

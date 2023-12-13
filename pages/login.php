@@ -36,7 +36,7 @@ if (!password_verify($senha, $senhaBanco)) {
     die();
 }
 
-$checarDados = checarLoginEmail('idusuarios, nome, telefone, cpf, email, senha, pontuacao, cadastro, alteracao, ativo', 'tbusuarios', $email, $senhaBanco);
+$checarDados = checarLoginEmail('idusuarios, nome, telefone, cpf, email, pontuacao, cadastro, alteracao, ativo', 'tbusuarios', $email, $senhaBanco);
 
 if ($checarDados == 'false') {
     echo json_encode('E-mail e/ou senha incorretos.');
@@ -58,6 +58,7 @@ if ($checarDados == 'false') {
                 "telefone" => $itemDados->telefone,
                 "cpf" => $itemDados->cpf,
                 "email" => $itemDados->email,
+                "senha" => $senha,
                 "pontuacao" => $itemDados->pontuacao,
                 "cadastro" => $itemDados->cadastro,
                 "alteracao" => $itemDados->alteracao,

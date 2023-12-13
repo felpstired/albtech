@@ -32,6 +32,8 @@ if ($listar == 'Vazio') {
     $cad = date_format($cad, 'd/m/Y');
     $alt = date_format($alt, 'd/m/Y H:i:s');
 
+    $cpf = substr_replace($cpf, '***.***', 4, -3);
+
     if ($status == 'A') {
         $status = 'Ativo';
     } else {

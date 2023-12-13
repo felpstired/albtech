@@ -19,6 +19,17 @@ switch ($acao) {
         include_once './pages/logout.php';
         break;
 
+    case 'AltUser':
+        $_SESSION['pages'] = $acao;
+        include_once './pages/altuser.php';
+        break;
+
+    case 'altSession':
+        include_once './pages/altsession.php';
+        break;
+
+
+    // página de consulta de ISBN via API
     case 'consultaISBN':
         include_once './pages/livros/consultaISBN.php';
         break;

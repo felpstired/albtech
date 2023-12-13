@@ -46,6 +46,9 @@ if (empty($_SESSION['dadosUser'])) {
                         case 'pageLog':
                             include_once './pages/log.php';
                             break;
+                        case 'AltUser':
+                            include_once './pages/altuser.php';
+                            break;
                     }
                 } else {
 

@@ -120,7 +120,7 @@
 
                     <div class="row">
                         <div class="mb-3 col-sm-12 col-md-6">
-                            <label for="cpfAddUser" class="form-label"><span class="mdi mdi-at"></span> CPF:</label>
+                            <label for="cpfAddUser" class="form-label"><span class="mdi mdi-card-account-details-star"></span> CPF:</label>
                             <input type="text" class="form-control maskCPF" id="cpfAddUser" name="cpfAddUser" placeholder="123.456.789-10" maxlength="120" required>
                         </div>
                         <div class="mb-3 col-sm-12 col-md-6">
@@ -130,7 +130,7 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="emailAddUser" class="form-label">E-mail:</label>
+                        <label for="emailAddUser" class="form-label"><span class="mdi mdi-at"></span> E-mail:</label>
                         <input type="email" class="form-control" id="emailAddUser" name="emailAddUser" placeholder="Insira seu email..." required>
                     </div>
 
@@ -147,7 +147,6 @@
                     <div id="errorMsg" class="form-text text-danger"></div>
 
                 </div>
-
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

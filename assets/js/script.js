@@ -39,7 +39,6 @@ $(document).ready(function () {
                             loadingEnd();
                             $('div#contentHome').html(retorno);
                             window.location.reload();
-
                         }, 1000);
                     }
                 } else {
@@ -119,7 +118,7 @@ function msgGeral(msg, tipo) {
         icon: tipo,
         title: msg,
         showConfirmButton: false,
-        timer: 1500
+        timer: 2000
     })
 }
 
@@ -263,6 +262,93 @@ function Logout() {
     })
 
 }
+
+var sendAltSession = false;
+
+function altSession() {
+
+    if (!sendAltSession) {
+
+        $('#frmAltSession').submit(function (event) {
+            event.preventDefault();
+
+            var inputSenha = document.getElementById('senhaAltSession');
+            var inputSenha2 = document.getElementById('senhaAltSession2');
+            var senha = $("#senhaAltSession").val();
+            var senha2 = $("#senhaAltSession2").val();
+
+            if (senha != '') {
+                if (senha2 != senha) {
+                    $(divError).html('As senhas não coincidem! Favor verificar antes de prosseguir.');
+                    inputSenha.classList.toggle('erroInput');
+                    inputSenha2.classList.toggle('erroInput');
+                    return;
+                }
+    
+                if (senha2.length < 8) {
+                    $(divError).html('A senha precisa conter no mínimo 8 caracteres! Favor verificar antes de prosseguir.');
+                    inputSenha.classList.toggle('erroInput');
+                    inputSenha2.classList.toggle('erroInput');
+                    return;
+                }
+            }    
+            
+            if (inputSenha.classList.contains('erroInput')) {
+                $(divError).html('');
+                inputSenha.classList.toggle('erroInput');
+                inputSenha2.classList.toggle('erroInput');
+            }
+
+            let dadosForm = $(this).serializeArray();
+
+            dadosForm.push(
+                { name: 'acao', value: 'altSession' },
+            )
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: 'controle.php',
+                data: dadosForm,
+                beforeSend: function () {
+                },
+                success: function (retorno) {
+
+                    if (retorno === 'OK') {
+                        msgGeral('Alteração efetuada com sucesso!', 'success');
+                        setTimeout(function () {
+                            window.location.reload();
+                        }, 1500);
+                    } else if (retorno === 'erroS') {
+
+                        msgGeral('ERRO: A nova senha não pode ser igual a anterior!', 'error');
+
+                        inputSenha.classList.toggle('erroInput');
+                        inputSenha2.classList.toggle('erroInput');
+
+                    } else {
+                        msgGeral('ERRO: ' + retorno + ' Tente novamente mais tarde.', 'error');
+                    }
+
+                }
+
+            });
+
+        });
+
+        sendAltSession = true;
+
+        return;
+
+    } else {
+
+        return;
+
+    }
+
+}
+
+
 
 
 

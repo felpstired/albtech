@@ -10,9 +10,9 @@
             </div>
             <div class="col-8 col-sm-8 col-md-8">
                 <div class="alinharVH d-flex justify-content-center flex-column">
-                    <h1>Gerenciamento de Empréstimos</h1>
-                    <a href="#">
-                        <h4>Registrar novo empréstimo</h4>
+                    <h1>Gerenciamento de Administradores</h1>
+                    <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddAdm">
+                        <h4>Registrar novo Administrador</h4>
                     </a>
                 </div>
             </div>
@@ -22,200 +22,90 @@
 
     <div class="corpoListar mt-4">
 
-        <div class="pesquisaLista">
-            <form action="#" method="post" id="listaSearch" name="listaSearch">
+        <div id="contentTable" class="dashboardLista mt-3">
+            <?php
 
-                <div class="row">
+            include_once 'listarTable.php';
 
-                    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block d-xxl-block col-xl-4 col-xxl-3">
-                        <div class="alinharVH d-flex align-items-center justify-content-center">
-                            <label for="tipopesquisa">Pesquisar por: </label>
-                            <select name="tipopesquisa" id="tipopesquisa" required>
-                                <option value="0" selected>Livro - Título</option>
-                                <option value="1">Livro - ISBN</option>
-                                <option value="2">Usuário - Nome</option>
-                                <option value="3">Usuário - CPF</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-xl-4 col-xxl-6">
-                        <div class="alinharVH d-flex align-items-center justify-content-center column-gap-3">
-                            <input type="text" name="textoPesquisa" placeholder="Pesquise aqui..." maxlength="180" required>
-                            <button type="submit"><span class="mdi mdi-magnify"></span></button>
-                        </div>
-                    </div>
-
-                    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block d-xxl-block col-xl-4 col-xxl-3">
-                        <div class="alinharVH d-flex align-items-center justify-content-center">
-                            <label for="filtropesquisa">Filtrar por: </label>
-                            <select name="filtropesquisa" id="filtropesquisa" required>
-                                <option value="0" selected>Mais Recente</option>
-                                <option value="1">Mais Antigo</option>
-                                <option value="2">Ordem A-Z</option>
-                                <option value="3">Ordem Z-A</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row mt-3">
-
-                    <div class="col-6 d-none d-sm-block d-md-block d-lg-block d-xl-none d-xxl-none">
-                        <div class="alinharVH d-flex align-items-center justify-content-center">
-                            <label for="tipopesquisa"><span>Pesquisar por: </span></label>
-                            <select name="tipopesquisa" id="tipopesquisa" required>
-                                <option value="0" selected>Livro - Título</option>
-                                <option value="1">Livro - ISBN</option>
-                                <option value="2">Usuário - Nome</option>
-                                <option value="3">Usuário - CPF</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-6 d-none d-sm-block d-md-block d-lg-block d-xl-none d-xxl-none">
-                        <div class="alinharVH d-flex align-items-center justify-content-center">
-                            <label for="filtropesquisa">Filtrar por: </label>
-                            <select name="filtropesquisa" id="filtropesquisa" required>
-                                <option value="0" selected>Mais Recente</option>
-                                <option value="1">Mais Antigo</option>
-                                <option value="2">Ordem A-Z</option>
-                                <option value="3">Ordem Z-A</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-
-            </form>
-        </div>
-
-        <div class="dashboardLista mt-5">
-            <table class="table table-hover table-stripped table-borderless text-center rounded-5">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col" width="5%">ID</th>
-                        <th scope="col" width="15%">Usuário</th>
-                        <th scope="col" width="30%">Livro</th>
-                        <th scope="col" width="18%">Empréstimo</th>
-                        <th scope="col" width="18%" class="showtd">Devolução</th>
-                        <th scope="col" width="14%">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Nove Novena</td>
-                        <td>29/10/2023</td>
-                        <td class="showtd">10/11/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Otto</td>
-                        <td>Percy Jasckson e o Ladrão de Raios</td>
-                        <td>12/10/2023</td>
-                        <td class="showtd">15/11/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Amber</td>
-                        <td>Harry Potter e a Pedra Filosofal</td>
-                        <td>02/09/2023</td>
-                        <td class="showtd">17/10/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Mark</td>
-                        <td>Nove Novena</td>
-                        <td>29/10/2023</td>
-                        <td class="showtd">10/11/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Otto</td>
-                        <td>Percy Jasckson e o Ladrão de Raios</td>
-                        <td>12/10/2023</td>
-                        <td class="showtd">15/11/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>Amber</td>
-                        <td>Harry Potter e a Pedra Filosofal</td>
-                        <td>02/09/2023</td>
-                        <td class="showtd">17/10/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Mark</td>
-                        <td>Nove Novena</td>
-                        <td>29/10/2023</td>
-                        <td class="showtd">10/11/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">8</th>
-                        <td>Otto</td>
-                        <td>Percy Jasckson e o Ladrão de Raios</td>
-                        <td>12/10/2023</td>
-                        <td class="showtd">15/11/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">9</th>
-                        <td>Amber</td>
-                        <td>Harry Potter e a Pedra Filosofal</td>
-                        <td>02/09/2023</td>
-                        <td class="showtd">17/10/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            ?>
         </div>
 
     </div>
 
+</div>
+
+<div class="modal fade" tabindex="-1" id="modalAddAdm" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white">
+                <h3 class="modal-title"><span class="mdi mdi-account-plus"></span> Novo Registro de Administrador</h3>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+
+            <form action="#" method="post" id="frmAddAdm" name="frmAddAdm">
+
+                <div class="modal-body fs-5">
+
+                    <div class="mb-3">
+                        <label for="nomeAddAdm" class="form-label"><span class="mdi mdi-account"></span>Selecione o usuário que irá virar Administrador:</label>
+                        <select class="form-select" id="nomeAddAdm" name="nomeAddAdm" required>
+                            <?php
+
+                            $listarUsers = listarGeral('idusuarios, nome', 'tbusuarios');
+
+                            if ($listarUsers == 'Vazio') {
+
+                            ?>
+
+                                <option selected>Sem opções!</option>
+
+                            <?php
+
+                            } else {
+
+                            ?>
+
+                                <option selected>Selecione o tipo</option>
+
+                                <?php
+
+                                foreach ($listarUsers as $users) {
+
+                                    $idUsers = $users->idusuarios;
+
+                                    $listarADM = listarRegistrosInt('idadm', 'tbadm', 'idusuarios', $idUsers);
+
+                                    if ($listarADM != 'Vazio') {
+
+                                        continue;
+
+                                    }
+
+                                    $nomeUsers = $users->nome;
+
+                                ?>
+
+                                    <option value="<?php echo $idUsers; ?>"><?php echo $nomeUsers; ?></option>
+
+                            <?php
+
+                                }
+                            }
+
+                            ?>
+                        </select>
+                    </div>
+
+                </div>
+                <div id="errorMsg" class="form-text text-danger"></div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-success" onclick="addAdm();">Cadastrar Administrador</button>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
 </div>

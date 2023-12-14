@@ -63,7 +63,7 @@
                 </div>
                 <div id="errorMsg" class="form-text text-danger"></div>
 
-                <button type="submit" class="btn btn-success mt-3" onclick="altSession();">Cadastrar Usuário</button>
+                <button type="submit" class="btn btn-success mt-3" onclick="altSession();">Alterar Cadastro</button>
 
             </form>
 

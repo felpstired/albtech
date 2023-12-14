@@ -2593,6 +2593,27 @@ function listarRegistrosStr($campos, $tabela, $campoParam, $campoValor)
     $conn = null;
 }
 
+function listarRegistrosInt($campos, $tabela, $campoParam, $campoValor)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->prepare("SELECT $campos FROM $tabela WHERE $campoParam = ?");
+        $sqlLista->bindValue(1, $campoValor, PDO::PARAM_INT);
+        $sqlLista->execute();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        } else {
+            return 'Vazio';
+        };
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
+
 
 function listarTodosPizza($campo, $tabela)
 {

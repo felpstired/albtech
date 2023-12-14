@@ -22,71 +22,6 @@
 
     <div class="corpoListar mt-4">
 
-        <div class="pesquisaLista">
-            <!-- <form action="#" method="post" id="listaSearch" name="listaSearch">
-
-                <div class="row">
-
-                    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block d-xxl-block col-xl-4 col-xxl-3">
-                        <div class="alinharVH d-flex align-items-center justify-content-center">
-                            <label for="tipopesquisa">Pesquisar por: </label>
-                            <select name="tipopesquisa" id="tipopesquisa" required>
-                                <option value="0" selected>Livro - Título</option>
-                                <option value="1">Livro - ISBN</option>
-                                <option value="2">Usuário - Nome</option>
-                                <option value="3">Usuário - CPF</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-xl-4 col-xxl-6">
-                        <div class="alinharVH d-flex align-items-center justify-content-center column-gap-3">
-                            <input type="text" name="textoPesquisa" placeholder="Pesquise aqui..." maxlength="180" required>
-                            <button type="submit"><span class="mdi mdi-magnify"></span></button>
-                        </div>
-                    </div>
-
-                    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block d-xxl-block col-xl-4 col-xxl-3">
-                        <div class="alinharVH d-flex align-items-center justify-content-center">
-                            <label for="filtropesquisa">Filtrar por: </label>
-                            <select name="filtropesquisa" id="filtropesquisa" required>
-                                <option value="0" selected>Mais Recente</option>
-                                <option value="1">Mais Antigo</option>
-                                <option value="2">Ordem A-Z</option>
-                                <option value="3">Ordem Z-A</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row mt-3">
-
-                    <div class="col-6 d-none d-sm-block d-md-block d-lg-block d-xl-none d-xxl-none">
-                        <div class="alinharVH d-flex align-items-center justify-content-center">
-                            <label for="tipopesquisa"><span>Pesquisar por: </span></label>
-                            <select name="tipopesquisa" id="tipopesquisa" required>
-                                <option value="1">Usuário - Nome</option>
-                                <option value="2">Usuário - CPF</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-6 d-none d-sm-block d-md-block d-lg-block d-xl-none d-xxl-none">
-                        <div class="alinharVH d-flex align-items-center justify-content-center">
-                            <label for="filtropesquisa">Filtrar por: </label>
-                            <select name="filtropesquisa" id="filtropesquisa" required>
-                                <option value="0" selected>Mais Recente</option>
-                                <option value="1">Mais Antigo</option>
-                                <option value="2">Ordem A-Z</option>
-                                <option value="3">Ordem Z-A</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-
-            </form> -->
         </div>
 
         <div id="contentTable" class="dashboardLista mt-3">
@@ -158,3 +93,5 @@
         </div>
     </div>
 </div>
+
+

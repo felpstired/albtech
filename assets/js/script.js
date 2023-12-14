@@ -540,6 +540,52 @@ function verUser(id, modal) {
 
 }
 
+function verUserAlt(id, modal) {
+
+    var dados = {
+        acao: 'verUser',
+        id: id,
+    };
+
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: 'controle.php',
+        data: dados,
+        beforeSend: function () {
+        }, success: function (retorno) {
+
+            var status = retorno.status;
+            var dadosArray = retorno.dadosArray;
+
+            if (status === 'OK') {
+                $('span#idUserMais').html(dadosArray['id']);
+                $('span#nomeUserMais').html(dadosArray['nome']);
+                $('span#emailUserMais').html(dadosArray['email']);
+                $('span#cpfUserMais').html(dadosArray['cpf']);
+                $('span#telUserMais').html(dadosArray['tel']);
+                $('span#pontUserMais').html(dadosArray['pont']);
+                $('span#cadUserMais').html(dadosArray['cad']);
+                $('span#altUserMais').html(dadosArray['alt']);
+                $('span#statusUserMais').html(dadosArray['status']);
+
+                $('#' + modal).modal('show');
+            } else {
+
+                $('div#infoUserMais').html('' +
+                    '<div class="w-100 alert-danger" role="alert">' + dadosArray + '</div>'
+                );
+
+                $('#' + modal).modal('show');
+
+            }
+
+        }
+    });
+
+}
+
+
 
 
 

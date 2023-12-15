@@ -473,6 +473,30 @@ function listarRegistroParamMaiorMenorNativo($tabela, $campos, $campoComparacao,
     $conn = null;
 }
 
+
+function listarLimit($tabela, $campos, $inicio, $maximo)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqlLista = $conn->query("SELECT $campos "
+            . "FROM $tabela "
+            . "LIMIT $inicio , $maximo ");
+        $sqlLista->execute();
+        $conn->commit();
+        if ($sqlLista->rowCount() > 0) {
+            return $sqlLista->fetchAll(PDO::FETCH_OBJ);
+        } else {
+            return 'Vazio';
+        };
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
+
 //Listar Todos REgistro Paginação
 function listarRegPagi($tabela, $campos, $orderby, $inicio, $maximo)
 {
@@ -3123,6 +3147,35 @@ function insertSeis($tabela, $campos, $value1, $value2, $value3, $value4, $value
         $sqInsert->bindValue(4, $value4, PDO::PARAM_STR);
         $sqInsert->bindValue(5, $value5, PDO::PARAM_STR);
         $sqInsert->bindValue(6, $value6, PDO::PARAM_STR);
+        $sqInsert->execute();
+        $conn->commit();
+        if ($sqInsert->rowCount() > 0) {
+            return 'Gravado';
+        } else {
+            return 'nGravado';
+        };
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
+
+function insertLivro($tabela, $campos, $value1, $value2, $value3, $value4, $value5, $value6, $value7, $value8)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqInsert = $conn->prepare("INSERT INTO $tabela($campos)VALUES(?,?,?,?,?,?,?,?, NOW())");
+        $sqInsert->bindValue(1, $value1, PDO::PARAM_INT);
+        $sqInsert->bindValue(2, $value2, PDO::PARAM_STR);
+        $sqInsert->bindValue(3, $value3, PDO::PARAM_STR);
+        $sqInsert->bindValue(4, $value4, PDO::PARAM_STR);
+        $sqInsert->bindValue(5, $value5, PDO::PARAM_STR);
+        $sqInsert->bindValue(6, $value6, PDO::PARAM_STR);
+        $sqInsert->bindValue(7, $value7, PDO::PARAM_STR);
+        $sqInsert->bindValue(8, $value8, PDO::PARAM_STR);
         $sqInsert->execute();
         $conn->commit();
         if ($sqInsert->rowCount() > 0) {

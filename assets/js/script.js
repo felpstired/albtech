@@ -284,15 +284,15 @@ function altSession() {
                     inputSenha2.classList.toggle('erroInput');
                     return;
                 }
-    
+
                 if (senha2.length < 8) {
                     $(divError).html('A senha precisa conter no mínimo 8 caracteres! Favor verificar antes de prosseguir.');
                     inputSenha.classList.toggle('erroInput');
                     inputSenha2.classList.toggle('erroInput');
                     return;
                 }
-            }    
-            
+            }
+
             if (inputSenha.classList.contains('erroInput')) {
                 $(divError).html('');
                 inputSenha.classList.toggle('erroInput');
@@ -354,59 +354,87 @@ function altSession() {
 
 var divError = document.getElementById('errorMsg');
 
+var sendProcLiv = false;
+
 function procurarLivro() {
 
-    var inputISBN = document.getElementById('livroISBN');
+    if (!sendProcLiv) {
 
-    var isbn = $('#livroISBN').val();
+    $('#frmISBN').submit(function (event) {
+        event.preventDefault();
 
-    if (isbn === '') {
-        $(divError).html('Você precisa informar o ISBN do livro!');
-        inputISBN.classList.toggle('erroInput');
-        return;
-    }
+        var inputISBN = document.getElementById('livroISBN');
 
-    if (inputISBN.classList.contains('erroInput')) {
-        $(divError).html('');
-        inputISBN.classList.toggle('erroInput');
-    }
+        var isbn = $('#livroISBN').val();
 
-    var dados = {
-        acao: 'consultaISBN',
-        isbn: isbn,
-    }
-
-    $.ajax({
-        type: 'POST',
-        dataType: 'json',
-        url: 'controle.php',
-        data: dados,
-        beforeSend: function () {
-            console.log('Antes de enviar');
-        },
-        success: function (retorno) {
-
-            console.log(retorno);
-
-            var status = retorno.status;
-            var dadosArray = retorno.dadosArray;
-
-            if (status == 'OK') {
-
-                $('input#livroTitulo').val(dadosArray['titulo']);
-                $('input#livroAutor').val(dadosArray['autor']);
-                $('textarea#livroDesc').val(dadosArray['desc']);
-                $('input#livroPubli').val(dadosArray['dataPubli']);
-                $('input#livroLink').val(dadosArray['linkCapa']);
-                $('input#livroPags').val(dadosArray['numPags']);
-
-            } else {
-                msgGeral('ERRO: ' + dadosArray + ' Tente novamente mais tarde.', 'error');
-            }
-
+        if (isbn === '') {
+            $(divError).html('Você precisa informar o ISBN do livro!');
+            inputISBN.classList.toggle('erroInput');
+            return;
         }
 
-    });
+        if (inputISBN.classList.contains('erroInput')) {
+            $(divError).html('');
+            inputISBN.classList.toggle('erroInput');
+        }
+
+        var dados = {
+            acao: 'consultaISBN',
+            isbn: isbn,
+        }
+
+        let form = this;
+
+        // let form2 = document.getElementById('frmAddLiv');
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: 'controle.php',
+            data: dados,
+            beforeSend: function () {
+                console.log('Antes de enviar');
+            },
+            success: function (retorno) {
+
+                console.log(retorno);
+
+                var status = retorno.status;
+                var dadosArray = retorno.dadosArray;
+
+                if (status == 'OK') {
+
+                    $('input#livroTitulo').val(dadosArray['titulo']);
+                    $('input#livroAutor').val(dadosArray['autor']);
+                    $('textarea#livroDesc').val(dadosArray['desc']);
+                    $('input#livroPubli').val(dadosArray['dataPubli']);
+                    $('input#livroLink').val(dadosArray['linkCapa']);
+                    $('input#livroPags').val(dadosArray['numPags']);
+                    $('input#livroISBNForm').val(dadosArray['isbn']);
+
+                   form.reset();
+
+                } else {
+                    msgGeral('ERRO: ' + dadosArray + ' Tente novamente mais tarde.', 'error');
+                    $("#frmAddLiv")[0].reset();
+                    form.reset();
+                }
+
+            }
+
+        });
+
+    })
+
+    sendProcLiv = true;
+
+        return;
+
+    } else {
+
+        return;
+
+    }
 
 }
 
@@ -589,6 +617,64 @@ function verUserAlt(id, modal) {
 
 
 
+// AÇÕES LIVRO
+var sendAddLivro = false;
+
+function addLivro() {
+
+    if (!sendAddLivro) {
+
+        $('#frmAddLiv').submit(function (event) {
+            event.preventDefault();
+
+            let form = this;
+
+            let dadosForm = $(this).serializeArray();
+
+            dadosForm.push(
+                { name: 'acao', value: 'addLivro' },
+            )
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: 'controle.php',
+                data: dadosForm,
+                beforeSend: function () {
+                },
+                success: function (retorno) {
+
+                    if (retorno === 'OK') {
+                        $('#modalAddLivro').modal('hide');
+                        $('.modal-backdrop').remove();
+                        msgGeral('Cadastro efetuado com sucesso!', 'success');
+                        // listarPageTab('listarUser');
+                        form.reset();
+                    } else {
+                        msgGeral('ERRO: ' + retorno + ' Tente novamente mais tarde.', 'error');
+                        form.reset();
+                    }
+
+                }
+
+            });
+
+        });
+
+        sendAddLivro = true;
+
+        return;
+
+    } else {
+
+        return;
+
+    }
+
+}
+
+
+
 // FUNÇÃO DE DELETAR GERAL
 
 // var sendDelete = false;
@@ -597,55 +683,55 @@ function msgDelete(id, acao, page) {
 
     // if (!sendDelete) {
 
-        Swal.fire({
-            title: 'Você tem certeza?',
-            html: "<?php echo 'aa'; ?> Essa ação não pode ser desfeita!",
-            icon: 'warning',
-            showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
-            cancelButtonText: 'Não, cancelar!',
-            confirmButtonText: 'Sim, apagar registro!'
-        }).then((result) => {
-            if (result.isConfirmed) {
+    Swal.fire({
+        title: 'Você tem certeza?',
+        html: "<?php echo 'aa'; ?> Essa ação não pode ser desfeita!",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'Não, cancelar!',
+        confirmButtonText: 'Sim, apagar registro!'
+    }).then((result) => {
+        if (result.isConfirmed) {
 
-                var dados = {
-                    acao: acao,
-                    id: id,
-                };
+            var dados = {
+                acao: acao,
+                id: id,
+            };
 
-                $.ajax({
-                    type: "POST",
-                    dataType: 'json',
-                    url: 'controle.php',
-                    data: dados,
-                    beforeSend: function () {
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: 'controle.php',
+                data: dados,
+                beforeSend: function () {
 
-                    }, success: function (retorno) {
+                }, success: function (retorno) {
 
-                        if (retorno === 'OK') {
-                            Swal.fire({
-                                title: 'Apagado!',
-                                html: 'O registro foi deletado com sucesso.',
-                                icon: 'success',
-                                showConfirmButton: false,
-                                timer: 1500
-                            })
-                            listarPageTab(page);
-                        } else {
-                            Swal.fire({
-                                title: 'Erro!',
-                                text: retorno,
-                                icon: 'error',
-                                showConfirmButton: true,
-                            })
-                            listarPageTab(page);
-                        }
-
+                    if (retorno === 'OK') {
+                        Swal.fire({
+                            title: 'Apagado!',
+                            html: 'O registro foi deletado com sucesso.',
+                            icon: 'success',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        listarPageTab(page);
+                    } else {
+                        Swal.fire({
+                            title: 'Erro!',
+                            text: retorno,
+                            icon: 'error',
+                            showConfirmButton: true,
+                        })
+                        listarPageTab(page);
                     }
-                });
-            }
-        })
+
+                }
+            });
+        }
+    })
 
     //     sendDelete = true;
 

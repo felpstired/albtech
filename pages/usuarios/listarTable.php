@@ -4,6 +4,23 @@ include_once './config/constantes.php';
 include_once './config/conexao.php';
 include_once './functions/dashboard.php';
 
+// $linhas = 5;
+
+// if (!isset($_SESSION['numPage'])) {
+//     $_SESSION['numPage'] = 1;
+// }
+
+// $pageInicial = ($_SESSION['numPage']-1) * $linhas;
+
+// $listarPagi = listarLimit('tbusuarios', 'idusuarios, nome, telefone, email, cadastro', $pageInicial, $linhas);
+// echo var_dump($listarPagi);
+
+// $contReg = contadorRegistroTodos('tbusuarios');
+// $totalReg = $contReg[0];   
+// echo print_r($contReg);
+
+// $totalPages = ceil($totalReg / $linhas);
+
 $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios');
 
 ?>
@@ -84,6 +101,9 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
 
     </tbody>
 </table>
+<!-- <div class="pagination">
+    a
+</div> -->
 
 <!--  // MODAL DE VER MAIS //  -->
 <div class="modal fade" tabindex="-1" id="modalMaisUser" aria-hidden="true">
@@ -193,7 +213,7 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
                     <button type="submit" class="btn btn-success" onclick="altUser();">Cadastrar Usuário</button>
                 </div>
 

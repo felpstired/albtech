@@ -10,9 +10,9 @@
             </div>
             <div class="col-8 col-sm-8 col-md-8">
                 <div class="alinharVH d-flex justify-content-center flex-column">
-                    <h1>Gerenciamento de Empréstimos</h1>
+                    <h1>Gerenciamento de Livros</h1>
                     <a href="#" data-bs-toggle="modal" data-bs-target="#modalAddLivro">
-                        <h4>Registrar novo empréstimo</h4>
+                        <h4>Registrar novo Livro</h4>
                     </a>
                 </div>
             </div>
@@ -21,73 +21,6 @@
     </div>
 
     <div class="corpoListar mt-4">
-
-        <div class="pesquisaLista">
-            
-            <!-- <form action="#" method="post" id="listaSearch" name="listaSearch">
-
-                <div class="row">
-
-                    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block d-xxl-block col-xl-4 col-xxl-3">
-                        <div class="alinharVH d-flex align-items-center justify-content-center">
-                            <label for="tipopesquisa">Pesquisar por: </label>
-                            <select name="tipopesquisa" id="tipopesquisa" required>
-                                <option value="0" selected>Livro - Título</option>
-                                <option value="1">Livro - ISBN</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-xl-4 col-xxl-6">
-                        <div class="alinharVH d-flex align-items-center justify-content-center column-gap-3">
-                            <input type="text" name="textoPesquisa" placeholder="Pesquise aqui..." maxlength="180" required>
-                            <button type="submit" class><span class="mdi mdi-magnify"></span></button>
-                        </div>
-                    </div>
-
-                    <div class="d-none d-sm-none d-md-none d-lg-none d-xl-block d-xxl-block col-xl-4 col-xxl-3">
-                        <div class="alinharVH d-flex align-items-center justify-content-center">
-                            <label for="filtropesquisa">Filtrar por: </label>
-                            <select name="filtropesquisa" id="filtropesquisa" required>
-                                <option value="0" selected>Mais Recente</option>
-                                <option value="1">Mais Antigo</option>
-                                <option value="2">Ordem A-Z</option>
-                                <option value="3">Ordem Z-A</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="row mt-3">
-
-                    <div class="col-6 d-none d-sm-block d-md-block d-lg-block d-xl-none d-xxl-none">
-                        <div class="alinharVH d-flex align-items-center justify-content-center">
-                            <label for="tipopesquisa"><span>Pesquisar por: </span></label>
-                            <select name="tipopesquisa" id="tipopesquisa" required>
-                                <option value="0" selected>Livro - Título</option>
-                                <option value="1">Livro - ISBN</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="col-6 d-none d-sm-block d-md-block d-lg-block d-xl-none d-xxl-none">
-                        <div class="alinharVH d-flex align-items-center justify-content-center">
-                            <label for="filtropesquisa">Filtrar por: </label>
-                            <select name="filtropesquisa" id="filtropesquisa" required>
-                                <option value="0" selected>Mais Recente</option>
-                                <option value="1">Mais Antigo</option>
-                                <option value="2">Ordem A-Z</option>
-                                <option value="3">Ordem Z-A</option>
-                            </select>
-                        </div>
-                    </div>
-
-                </div>
-
-            </form> -->
-
-        </div>
 
         <div id="listarTable" class="dashboardLista mt-3">
             <table class="table table-hover table-stripped table-borderless text-center rounded-5">
@@ -226,21 +159,27 @@
                 <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
 
-            <form action="#" method="post" id="frmAddLiv" name="frmAddEmp">
 
-                <div class="modal-body fs-5">
+
+            <div class="modal-body fs-5">
+                <form action="#" method="post" id="frmISBN" name="frmISBN">
                     <div class="mb-3" id="inputISBN">
                         <label for="livroISBN" class="form-label">ISBN:</label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="livroISBN" name="livroISBN" placeholder="Insira o ISBN" maxlength="14">
-                            <button type="button" class="btn btn-primary botaoISBN" onclick="procurarLivro();">Procurar Livro <span class="mdi mdi-magnify"></span></button>
+                            <button type="submit" class="btn btn-primary botaoISBN" onclick="procurarLivro();">Procurar Livro <span class="mdi mdi-magnify"></span></button>
                         </div>
                         <div id="errorMsg" class="form-text text-danger"></div>
                     </div>
+                </form>
+
+                <form action="#" method="post" id="frmAddLiv" name="frmAddLiv">
 
                     <div class="divAddInfoEmp">
 
                         <hr>
+
+                        <input type="text" class="form-control d-none" id="livroISBNForm" name="livroISBNForm" maxlength="14">
 
                         <div class="row">
                             <div class="mb-3 col-sm-12 col-md-6">
@@ -255,7 +194,7 @@
 
                         <div class="mb-3">
                             <label for="livroDesc" class="form-label">Descrição:</label>
-                            <textarea class="form-control" id="livroDesc" name="livroDesc" placeholder="Insira a descrição do livro" rows="3" required></textarea>
+                            <textarea class="form-control" id="livroDesc" name="livroDesc" placeholder="Insira a descrição do livro" rows="5" required></textarea>
                         </div>
 
                         <div class="row">
@@ -276,15 +215,15 @@
 
                                     if ($listarTipo == 'Vazio') {
 
-                                        ?>
+                                    ?>
 
                                         <option selected>Sem opções!</option>
 
-                                        <?php
+                                    <?php
 
                                     } else {
 
-                                        ?>
+                                    ?>
 
                                         <option selected>Selecione o tipo</option>
 
@@ -295,14 +234,13 @@
                                             $idTipo = $tipo->idtipoLivro;
                                             $tipoLiv = $tipo->tipoLivro;
 
-                                            ?>
+                                        ?>
 
                                             <option value="<?php echo $idTipo; ?>"><?php echo $tipoLiv; ?></option>
 
-                                            <?php
+                                    <?php
 
                                         }
-
                                     }
 
                                     ?>
@@ -317,16 +255,23 @@
 
                     </div>
 
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary">Save changes</button>
+                    </div>
 
+                </form>
 
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
-                </div>
-
-            </form>
-
+            </div>
         </div>
     </div>
 </div>
+
+<script>
+    const modalLivro = document.getElementById('modalAddLivro');
+    const inputISBN = document.getElementById('livroISBN');
+
+    modalLivro.addEventListener('shown.bs.modal', () => {
+        inputISBN.focus();
+    })
+</script>

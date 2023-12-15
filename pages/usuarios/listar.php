@@ -22,8 +22,6 @@
 
     <div class="corpoListar mt-4">
 
-        </div>
-
         <div id="contentTable" class="dashboardLista mt-3">
             <?php
 

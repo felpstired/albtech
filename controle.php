@@ -57,6 +57,14 @@ switch ($acao) {
         $_SESSION['pages'] = $acao;
         include_once './pages/livros/listar.php';
         break;
+    case 'addLivro':
+        $_SESSION['pages'] = $acao;
+        include_once './pages/livros/add.php';
+        break;
+    case 'listarLivro':
+        $_SESSION['pages'] = $acao;
+        include_once './pages/livros/listarTable.php';
+        break;
 
 
     case 'pageTLiv':

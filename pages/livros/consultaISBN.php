@@ -49,6 +49,7 @@ if ($response !== false) {
         }
 
         $lista = [
+            'isbn' => $isbn,
             'titulo'=> $titulo,
             'autor'=> $autor,
             'desc'=> $desc,

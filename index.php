@@ -44,7 +44,7 @@
     <style>
         #content {
 
-            height: 100%;
+            
 
             <?php
 

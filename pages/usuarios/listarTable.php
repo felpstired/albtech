@@ -4,22 +4,22 @@ include_once './config/constantes.php';
 include_once './config/conexao.php';
 include_once './functions/dashboard.php';
 
-// $linhas = 5;
+$linhas = 5;
 
-// if (!isset($_SESSION['numPage'])) {
-//     $_SESSION['numPage'] = 1;
-// }
+if (!isset($_SESSION['numPage'])) {
+    $_SESSION['numPage'] = 1;
+}
 
-// $pageInicial = ($_SESSION['numPage']-1) * $linhas;
+$pageInicial = ($_SESSION['numPage'] - 1) * $linhas;
 
-// $listarPagi = listarLimit('tbusuarios', 'idusuarios, nome, telefone, email, cadastro', $pageInicial, $linhas);
+$listarPagi = listarLimit('tbusuarios', 'idusuarios, nome, telefone, email, cadastro', $pageInicial, $linhas);
 // echo var_dump($listarPagi);
 
-// $contReg = contadorRegistroTodos('tbusuarios');
-// $totalReg = $contReg[0];   
-// echo print_r($contReg);
+$contReg = contadorRegistroTodos('tbusuarios');
+// echo var_dump($contReg);
 
-// $totalPages = ceil($totalReg / $linhas);
+$totalPages = ceil($contReg / $linhas);
+// echo $totalPages;
 
 $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios');
 
@@ -52,7 +52,7 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
 
         } else {
 
-            foreach ($listar as $itemLista) {
+            foreach ($listarPagi as $itemLista) {
                 $id = $itemLista->idusuarios;
 
                 $nome = explode(' ', trim($itemLista->nome))[0];
@@ -101,9 +101,64 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
 
     </tbody>
 </table>
-<!-- <div class="pagination">
-    a
-</div> -->
+<div class="pagination <?php if ($contReg <= 5) {
+                            echo 'd-none';
+                        } ?>">
+    <div class="divPagi">
+        <span>Página <b><?php echo $_SESSION['numPage']; ?></b> de <b><?php echo $totalPages; ?></b></span>
+    </div>
+    <div class="divPagi">
+        <ul>
+            <li class="<?php if ($_SESSION['numPage'] == 1) {
+                            echo 'd-none';
+                        } ?>">
+                <a href="#" class="linkPagi" idPagi="<?php echo 1; ?>">
+                    <span class="mdi mdi-skip-backward"></span> Primeira Página
+                </a>
+            </li>
+            <li class="<?php if ($_SESSION['numPage'] == 1) {
+                            echo 'd-none';
+                        } ?>">
+                <a href="#" class="linkPagi" idPagi="<?php echo $_SESSION['numPage'] - 1; ?>">
+                    <span class="mdi mdi-skip-previous"></span> Anterior
+                </a>
+            </li>
+            <?php
+
+            for ($i = 1; $i < ($totalPages + 1); $i++) {
+
+            ?>
+
+                <li>
+                    <a href="#" class="linkPagi" idPagi="<?php echo $i; ?>">
+                        <span><b><?php echo $i; ?></b></span>
+                    </a>
+                </li>
+
+            <?php
+
+            }
+
+            ?>
+
+            <li class="<?php if ($_SESSION['numPage'] == $totalPages) {
+                            echo 'd-none';
+                        } ?>">
+                <a href="#" class="linkPagi" idPagi="<?php echo $_SESSION['numPage'] + 1; ?>">
+                    Próxima <span class="mdi mdi-skip-next"></span>
+                </a>
+            </li>
+            <li class="<?php if ($_SESSION['numPage'] == $totalPages) {
+                            echo 'd-none';
+                        } ?>">
+                <a href="#" class="linkPagi" idPagi="<?php echo $totalPages; ?>">
+                    Última Página <span class="mdi mdi-skip-forward"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>
 
 <!--  // MODAL DE VER MAIS //  -->
 <div class="modal fade" tabindex="-1" id="modalMaisUser" aria-hidden="true">
@@ -155,7 +210,7 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
             </div>
 
             <div class="modal-footer">
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
             </div>
 
         </div>
@@ -213,7 +268,7 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
                 </div>
 
                 <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
                     <button type="submit" class="btn btn-success" onclick="altUser();">Cadastrar Usuário</button>
                 </div>
 

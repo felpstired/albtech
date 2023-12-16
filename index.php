@@ -44,7 +44,7 @@
     <style>
         #content {
 
-            
+            height: 100%;
 
             <?php
 
@@ -52,26 +52,16 @@
 
             ?>
             
-            
             background-color: rgba(0, 0, 0, 0.445);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100%;
 
-            <?php
-
-            } else if ($_SESSION['pages'] == 'home') {
-
-            ?>
-            
-            height: 100%;
-            
             <?php
 
             }
 
-                ?>
+            ?>
         }
     </style>
 

@@ -6,43 +6,19 @@ include_once './functions/dashboard.php';
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-if (isset($dados['nomeAddUser']) && !empty($dados['nomeAddUser'])) {
-    $nome = $dados['nomeAddUser'];
+if (isset($dados['nomeAddAdm']) && !empty($dados['nomeAddAdm'])) {
+    if ($dados['nomeAddAdm'] > 0) {
+        $idadm = $dados['nomeAddAdm'];
+    } else {
+        echo json_encode('Administrador escolhido inválido.');
+        die();
+    }    
 } else {
-    echo json_encode('Campos não preenchidos ou inexistentes. Por favor, tente novamente.');
+    echo json_encode('Campos não preenchidos ou inexistentes.');
     die();
 }
 
-if (isset($dados['cpfAddUser']) && !empty($dados['cpfAddUser'])) {
-    $cpf = $dados['cpfAddUser'];
-} else {
-    echo json_encode('Campos não preenchidos ou inexistentes. Por favor, tente novamente.');
-    die();
-}
-
-if (isset($dados['telAddUser']) && !empty($dados['telAddUser'])) {
-    $tel = $dados['telAddUser'];
-} else {
-    echo json_encode('Campos não preenchidos ou inexistentes. Por favor, tente novamente.');
-    die();
-}
-
-if (isset($dados['emailAddUser']) && !empty($dados['emailAddUser'])) {
-    $email = $dados['emailAddUser'];
-} else {
-    echo json_encode('Campos não preenchidos ou inexistentes. Por favor, tente novamente.');
-    die();
-}
-
-
-if (isset($dados['senhaAddUser']) && !empty($dados['senhaAddUser'])) {
-    $senha = password_hash($dados['senhaAddUser'], PASSWORD_BCRYPT);
-} else {
-    echo json_encode('Campos não preenchidos ou inexistentes. Por favor, tente novamente.');
-    die();
-}
-
-$inserir = insertCincoCad('tbusuarios', 'nome, telefone, cpf, email, senha, cadastro', $nome, $tel, $cpf, $email, $senha);
+$inserir = insertUmInt('tbadm', 'idusuarios, cadastro', $idadm);
 
 if ($inserir == 'Gravado') {
     echo json_encode('OK');

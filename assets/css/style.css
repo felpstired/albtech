@@ -352,3 +352,47 @@ table {
 #livroDesc {
     resize: none;
 }
+
+
+.pagination {
+    width: 100%;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 17px;
+}
+
+.pagination ul {
+    display: flex;
+    padding: 0;
+    /* margin: ; */
+    gap: 10px;
+    align-items: center;
+    list-style-type: none;
+    margin: 0;
+}
+
+.pagination a {
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+    background-color: #fff;
+    color: #18afaf;
+    padding: 4px 10px;
+    border-radius: 5px;
+}
+
+.pagination span {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    color: #18afaf;
+    padding: 4px 10px;
+    border-radius: 5px;
+}
+
+.divPagi {
+    display: flex;
+    align-items: center;
+}

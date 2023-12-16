@@ -10,7 +10,7 @@ $acao = filter_input(INPUT_POST, 'acao', FILTER_SANITIZE_STRING);
 
 switch ($acao) {
 
-    // sessão do usuário
+        // sessão do usuário
     case 'Login':
         include_once './pages/login.php';
         break;
@@ -29,18 +29,18 @@ switch ($acao) {
         break;
 
 
-    // página de consulta de ISBN via API
+        // página de consulta de ISBN via API
     case 'consultaISBN':
         include_once './pages/livros/consultaISBN.php';
         break;
 
 
-    // navegação da página     
+        // navegação da página     
     case 'home':
         $_SESSION['pages'] = $acao;
         include_once './home.php';
         break;
-    
+
     case 'pageEmp':
         $_SESSION['pages'] = $acao;
         include_once './pages/emprestimo/listar.php';
@@ -98,6 +98,18 @@ switch ($acao) {
         $_SESSION['pages'] = $acao;
         include_once './pages/adm/listar.php';
         break;
+    case 'listarAdm':
+        include_once './pages/adm/listarTable.php';
+        break;
+    case 'addAdm':
+        include_once './pages/adm/add.php';
+        break;
+    case 'verAdm':
+        include_once './pages/adm/ver.php';
+        break;
+    case 'delAdm':
+        include_once './pages/adm/del.php';
+        break;
 
 
     case 'pageLog':
@@ -105,4 +117,7 @@ switch ($acao) {
         include_once './pages/log.php';
         break;
 
+    case 'numPage':
+        include_once './pages/numpage.php';
+        break;
 }

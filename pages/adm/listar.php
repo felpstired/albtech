@@ -47,7 +47,7 @@
                 <div class="modal-body fs-5">
 
                     <div class="mb-3">
-                        <label for="nomeAddAdm" class="form-label"><span class="mdi mdi-account"></span>Selecione o usuário que irá virar Administrador:</label>
+                        <label for="nomeAddAdm" class="form-label"><span class="mdi mdi-account"></span>Selecione o usuário para ser Administrador:</label>
                         <select class="form-select" id="nomeAddAdm" name="nomeAddAdm" required>
                             <?php
 

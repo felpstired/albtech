@@ -2860,6 +2860,28 @@ function insertAuditoria($idsis, $responsavel, $acao, $idafetado, $nomeafetado, 
     $conn = null;
 }
 
+function insertUmInt($tabela, $campos, $valeu1)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqInsert = $conn->prepare("INSERT INTO $tabela($campos)VALUES(?,NOW())");
+        $sqInsert->bindValue(1, $valeu1, PDO::PARAM_INT);
+        $sqInsert->execute();
+        $conn->commit();
+        if ($sqInsert->rowCount() > 0) {
+            return 'Gravado';
+        } else {
+            return 'nGravado';
+        };
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
+
 function insertDois($tabela, $campos, $valeu1, $valeu2)
 {
     $conn = conectar();

@@ -5,6 +5,40 @@ $(document).ready(function () {
 
 
     var menuLateral = document.getElementById('offcanvasDarkNavbar');
+    
+
+    $('.linkPagi').click(function (event) {
+        event.preventDefault();
+
+        let numPage = $(this).attr('idPagi');
+
+        console.log(numPage);
+
+        let dados = {
+            acao: 'numPage',
+            numPage: numPage
+        };
+
+        console.log(dados);
+
+        $.ajax({
+            type: "POST",
+            dataType: 'html',
+            url: 'controle.php',
+            data: dados,
+            beforeSend: function () {
+                // loading();
+            }, success: function (retorno) {
+
+                listarPageTab();
+                
+                window.location.reload();
+
+            }
+        });
+    });
+
+
 
     // navegação na página
     $('.linkMenu').click(function (event) {
@@ -616,6 +650,65 @@ function verUserAlt(id, modal) {
 
 
 
+// AÇÕES ADM
+var sendAddAdm = false;
+
+function addAdm() {
+
+    if (!sendAddAdm) {
+
+        $('#frmAddAdm').submit(function (event) {
+            event.preventDefault();
+
+            let form = this;
+
+            let dadosForm = $(this).serializeArray();
+
+            dadosForm.push(
+                { name: 'acao', value: 'addAdm' },
+            )
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: 'controle.php',
+                data: dadosForm,
+                beforeSend: function () {
+                },
+                success: function (retorno) {
+
+                    if (retorno === 'OK') {
+                        $('#modalAddAdm').modal('hide');
+                        $('.modal-backdrop').remove();
+                        msgGeral('Cadastro efetuado com sucesso!', 'success');
+                        listarPageTab('listarAdm');
+                        form.reset();
+                    } else {
+                        msgGeral('ERRO: ' + retorno + ' Tente novamente mais tarde.', 'error');
+                        form.reset();
+                    }
+
+                }
+
+            });
+
+        });
+
+        sendAddAdm = true;
+
+        return;
+
+    } else {
+
+        return;
+
+    }
+
+}
+
+
+
+
 
 // AÇÕES LIVRO
 var sendAddLivro = false;
@@ -685,7 +778,7 @@ function msgDelete(id, acao, page) {
 
     Swal.fire({
         title: 'Você tem certeza?',
-        html: "<?php echo 'aa'; ?> Essa ação não pode ser desfeita!",
+        html: "Essa ação não pode ser desfeita!",
         icon: 'warning',
         showCancelButton: true,
         confirmButtonColor: '#3085d6',
@@ -695,10 +788,14 @@ function msgDelete(id, acao, page) {
     }).then((result) => {
         if (result.isConfirmed) {
 
+            console.log('Confirmou');
+
             var dados = {
                 acao: acao,
                 id: id,
             };
+
+            console.log(dados);
 
             $.ajax({
                 type: "POST",
@@ -707,7 +804,13 @@ function msgDelete(id, acao, page) {
                 data: dados,
                 beforeSend: function () {
 
+                    console.log('Antes');
+
+
                 }, success: function (retorno) {
+
+                    console.log('Depois');
+                    console.log(retorno);
 
                     if (retorno === 'OK') {
                         Swal.fire({

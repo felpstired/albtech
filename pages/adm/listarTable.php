@@ -4,7 +4,8 @@ include_once './config/constantes.php';
 include_once './config/conexao.php';
 include_once './functions/dashboard.php';
 
-$listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios');
+$listar = listarRegistrosInner('tbusuarios.idusuarios, tbusuarios.nome, tbadm.idadm, tbadm.cadastro', 'tbusuarios', 'tbadm', 'idusuarios');
+var_dump($listar);
 
 ?>
 
@@ -13,9 +14,7 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
         <tr>
             <th scope="col" width="5%">ID</th>
             <th scope="col" width="15%">Usuário</th>
-            <th scope="col" width="18%">E-mail</th>
-            <th scope="col" width="18%">Telefone</th>
-            <th scope="col" width="18%" class="showtd">Cadastro</th>
+            <th scope="col" width="18%">Cadastro</th>
             <th scope="col" width="14%">Ações</th>
         </tr>
     </thead>
@@ -36,12 +35,10 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
         } else {
 
             foreach ($listar as $itemLista) {
-                $id = $itemLista->idusuarios;
+                $idusuarios = $itemLista->idusuarios;
+                $id = $itemLista->idadm;
 
                 $nome = explode(' ', trim($itemLista->nome))[0];
-
-                $email = $itemLista->email;
-                $tel = $itemLista->telefone;
 
                 $date = date_create($itemLista->cadastro);
                 $dataCad = date_format($date, 'd/m/Y');
@@ -51,27 +48,10 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
                 <tr>
                     <th scope="row"><?php echo $id; ?></th>
                     <td><?php echo $nome; ?></td>
-                    <td><?php echo $email; ?></td>
-                    <td><?php echo $tel; ?></td>
                     <td><?php echo $dataCad; ?></td>
                     <td>
-                        <button type="button" class="btn btn-secondary" onclick="verUser(<?php echo $id; ?>, 'modalMaisUser');"><span class="mdi mdi-dots-horizontal"></span></button>
-                        <?php
-
-                        if ($id != $_SESSION['dadosUser']['id']) {
-
-
-
-                        ?>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-
-                        <?php
-
-                        }
-
-                        ?>
-
-                        <button type="button" class="btn btn-danger" onclick="msgDelete(<?php echo $id; ?>, 'delUser', 'listarUser');"><span class="mdi mdi-delete"></span></button>
+                        <button type="button" class="btn btn-secondary" onclick="verUser(<?php echo $idusuarios; ?>, 'modalMaisUser');"><span class="mdi mdi-dots-horizontal"></span></button>
+                        <button type="button" class="btn btn-danger" onclick="msgDelete(<?php echo $id; ?>, 'delAdm', 'listarAdm');"><span class="mdi mdi-delete"></span></button>
                     </td>
                 </tr>
 

@@ -52,7 +52,12 @@ if ($checarDados == 'false') {
             die();
         } else {
 
+            foreach ($checarAdm as $itemAdm) {
+                $idadm = $itemAdm->idadm;
+            }
+
             $_SESSION['dadosUser'] = array(
+                "idadm" => $idadm,
                 "id" => $itemDados->idusuarios,
                 "nome" => $itemDados->nome,
                 "telefone" => $itemDados->telefone,

@@ -8,12 +8,12 @@ $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 $id = $dados['id'];
 
-if ($id == $_SESSION['dadosUser']['id']) {
+if ($id == $_SESSION['dadosUser']['idadm']) {
     echo json_encode('Você não pode apagar seu próprio registro!');
     die();
 }
 
-$delete = deleteRegistro('tbusuarios', 'idusuarios', $id);
+$delete = deleteRegistro('tbadm', 'idadm', $id);
 
 if ($delete == 'Deletado') {
     echo json_encode('OK');

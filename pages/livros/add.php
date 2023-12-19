@@ -10,7 +10,7 @@ if (isset($dados['livroISBNForm'])) {
     if ($dados['livroISBNForm'] == '') {
         $isbn = 'Não disponível';
     } else {
-        $isbn = $dados['livroTitulo'];
+        $isbn = $dados['livroISBNForm'];
     }  
 } else {
     echo json_encode('Campos não preenchidos ou inexistentes. Por favor, tente novamente.');
@@ -65,6 +65,7 @@ if (isset($dados['livroTipo']) && !empty($dados['livroTipo'])) {
 }
 
 if (isset($dados['livroLink']) && !empty($dados['livroLink'])) {
+    
     $livroLink = $dados['livroLink'];
 
     if ($livroLink == '0') {

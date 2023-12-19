@@ -29,11 +29,6 @@ switch ($acao) {
         break;
 
 
-        // página de consulta de ISBN via API
-    case 'consultaISBN':
-        include_once './pages/livros/consultaISBN.php';
-        break;
-
 
         // navegação da página     
     case 'home':
@@ -41,39 +36,75 @@ switch ($acao) {
         include_once './home.php';
         break;
 
+
+
     case 'pageEmp':
+        unset($_SESSION['numPage']);
         $_SESSION['pages'] = $acao;
         include_once './pages/emprestimo/listar.php';
         break;
 
+    case 'listarEmp':
+        include_once './pages/emprestimo/listarTable.php';
+        break;
+
+    case 'addEmp':
+        include_once './pages/emprestimo/add.php';
+        break;
+
+    case 'verEmp':
+        include_once './pages/emprestimo/ver.php';
+        break;
+
+
 
     case 'pageDev':
+        unset($_SESSION['numPage']);
         $_SESSION['pages'] = $acao;
         include_once './pages/devolucao/listar.php';
         break;
 
 
+
     case 'pageLiv':
+        unset($_SESSION['numPage']);
         $_SESSION['pages'] = $acao;
         include_once './pages/livros/listar.php';
         break;
-    case 'addLivro':
-        $_SESSION['pages'] = $acao;
-        include_once './pages/livros/add.php';
-        break;
+
     case 'listarLivro':
-        $_SESSION['pages'] = $acao;
         include_once './pages/livros/listarTable.php';
         break;
 
+        // página de consulta de ISBN via API
+    case 'consultaISBN':
+        include_once './pages/livros/consultaISBN.php';
+        break;
+
+    case 'addLivro':
+        include_once './pages/livros/add.php';
+        break;
+
+    case 'verLivro':
+        include_once './pages/livros/ver.php';
+        break;
+
+    case 'delLivro':
+        include_once './pages/livros/del.php';
+        break;
+
+
 
     case 'pageTLiv':
+        unset($_SESSION['numPage']);
         $_SESSION['pages'] = $acao;
         include_once './pages/tlivros/listar.php';
         break;
 
 
+
     case 'pageUser':
+        unset($_SESSION['numPage']);
         $_SESSION['pages'] = $acao;
         include_once './pages/usuarios/listar.php';
         break;
@@ -94,7 +125,9 @@ switch ($acao) {
         break;
 
 
+
     case 'pageAdm':
+        unset($_SESSION['numPage']);
         $_SESSION['pages'] = $acao;
         include_once './pages/adm/listar.php';
         break;
@@ -112,10 +145,14 @@ switch ($acao) {
         break;
 
 
+
     case 'pageLog':
+        unset($_SESSION['numPage']);
         $_SESSION['pages'] = $acao;
         include_once './pages/log.php';
         break;
+
+
 
     case 'numPage':
         include_once './pages/numpage.php';

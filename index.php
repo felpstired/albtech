@@ -23,8 +23,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- favicons (icones que aparecem na aba do site) -->
-    <link href="assets/img/logo/favicon/favicon.ico" rel="icon">
-    <link href="assets/img/logo/favicon/apple-touch-icon.png" rel="apple-touch-icon">
+    <link href="assets/img/favicon/favicon.ico" rel="icon">
+    <link href="assets/img/favicon/apple-touch-icon.png" rel="apple-touch-icon">
 
     <!-- conteúdo importante para o navegador (aparece nos resultados de pesquisa) -->
     <meta content="Traços que falam, cores que emocionam. vapocom." name="description">
@@ -44,7 +44,7 @@
     <style>
         #content {
 
-            height: 100%;
+            height: 100% !important;
 
             <?php
 
@@ -58,9 +58,9 @@
             align-items: center;
 
             <?php
-
-            }
-
+            
+        }
+            
             ?>
         }
     </style>
@@ -78,7 +78,7 @@
     ?>
 
     <!-- titulo da página -->
-    <title>Gerenciamento de Biblioteca</title>
+    <title>Book A</title>
 
 </head>
 
@@ -110,7 +110,7 @@
 
                     <div class="camposForm mb-3">
 
-                        <h1>LOGIN</h1>
+                        <!-- <h1>LOGIN</h1> -->
 
                         <input type="email" name="emailLogin" placeholder="E-mail" maxlength="60" required>
                         <input type="password" name="senhaLogin" placeholder="Senha" maxlength="30" required>

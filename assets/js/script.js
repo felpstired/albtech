@@ -172,11 +172,13 @@ function loadingEnd() {
     Swal.close();
 }
 
+var divError = document.getElementById('errorMsg');
 
 
 
-// FUNÇÕES ADM
 
+
+// FUNÇÕES SESSÃO
 var sendLogin = false;
 function Login() {
 
@@ -386,95 +388,7 @@ function altSession() {
 
 
 
-var divError = document.getElementById('errorMsg');
-
-var sendProcLiv = false;
-
-function procurarLivro() {
-
-    if (!sendProcLiv) {
-
-    $('#frmISBN').submit(function (event) {
-        event.preventDefault();
-
-        var inputISBN = document.getElementById('livroISBN');
-
-        var isbn = $('#livroISBN').val();
-
-        if (isbn === '') {
-            $(divError).html('Você precisa informar o ISBN do livro!');
-            inputISBN.classList.toggle('erroInput');
-            return;
-        }
-
-        if (inputISBN.classList.contains('erroInput')) {
-            $(divError).html('');
-            inputISBN.classList.toggle('erroInput');
-        }
-
-        var dados = {
-            acao: 'consultaISBN',
-            isbn: isbn,
-        }
-
-        let form = this;
-
-        // let form2 = document.getElementById('frmAddLiv');
-
-        $.ajax({
-            type: 'POST',
-            dataType: 'json',
-            url: 'controle.php',
-            data: dados,
-            beforeSend: function () {
-                console.log('Antes de enviar');
-            },
-            success: function (retorno) {
-
-                console.log(retorno);
-
-                var status = retorno.status;
-                var dadosArray = retorno.dadosArray;
-
-                if (status == 'OK') {
-
-                    $('input#livroTitulo').val(dadosArray['titulo']);
-                    $('input#livroAutor').val(dadosArray['autor']);
-                    $('textarea#livroDesc').val(dadosArray['desc']);
-                    $('input#livroPubli').val(dadosArray['dataPubli']);
-                    $('input#livroLink').val(dadosArray['linkCapa']);
-                    $('input#livroPags').val(dadosArray['numPags']);
-                    $('input#livroISBNForm').val(dadosArray['isbn']);
-
-                   form.reset();
-
-                } else {
-                    msgGeral('ERRO: ' + dadosArray + ' Tente novamente mais tarde.', 'error');
-                    $("#frmAddLiv")[0].reset();
-                    form.reset();
-                }
-
-            }
-
-        });
-
-    })
-
-    sendProcLiv = true;
-
-        return;
-
-    } else {
-
-        return;
-
-    }
-
-}
-
-
 // FUNÇÕES DE CADASTRAR, VER MAIS, ALTERAR E EXCLUIR
-
 
 // AÇÕES USUARIO
 var sendAddUser = false;
@@ -650,6 +564,8 @@ function verUserAlt(id, modal) {
 
 
 
+
+
 // AÇÕES ADM
 var sendAddAdm = false;
 
@@ -710,7 +626,93 @@ function addAdm() {
 
 
 
+
 // AÇÕES LIVRO
+var sendProcLiv = false;
+
+function procurarLivro() {
+
+    if (!sendProcLiv) {
+
+    $('#frmISBN').submit(function (event) {
+        event.preventDefault();
+
+        var inputISBN = document.getElementById('livroISBN');
+
+        var isbn = $('#livroISBN').val();
+
+        if (isbn === '') {
+            $(divError).html('Você precisa informar o ISBN do livro!');
+            inputISBN.classList.toggle('erroInput');
+            return;
+        }
+
+        if (inputISBN.classList.contains('erroInput')) {
+            $(divError).html('');
+            inputISBN.classList.toggle('erroInput');
+        }
+
+        var dados = {
+            acao: 'consultaISBN',
+            isbn: isbn,
+        }
+
+        let form = this;
+
+        // let form2 = document.getElementById('frmAddLiv');
+
+        $.ajax({
+            type: 'POST',
+            dataType: 'json',
+            url: 'controle.php',
+            data: dados,
+            beforeSend: function () {
+                console.log('Antes de enviar');
+            },
+            success: function (retorno) {
+
+                console.log(retorno);
+
+                var status = retorno.status;
+                var dadosArray = retorno.dadosArray;
+
+                if (status == 'OK') {
+
+                    $('input#livroTitulo').val(dadosArray['titulo']);
+                    $('input#livroAutor').val(dadosArray['autor']);
+                    $('textarea#livroDesc').val(dadosArray['desc']);
+                    $('input#livroPubli').val(dadosArray['dataPubli']);
+                    $('input#livroLink').val(dadosArray['linkCapa']);
+                    $('input#livroPags').val(dadosArray['numPags']);
+                    $('input#livroISBNForm').val(dadosArray['isbn']);
+
+                   form.reset();
+
+                } else {
+                    msgGeral('ERRO: ' + dadosArray + ' Tente novamente mais tarde.', 'error');
+                    $("#frmAddLiv")[0].reset();
+                    form.reset();
+                }
+
+            }
+
+        });
+
+    })
+
+    sendProcLiv = true;
+
+        return;
+
+    } else {
+
+        return;
+
+    }
+
+}
+
+
 var sendAddLivro = false;
 
 function addLivro() {
@@ -741,8 +743,10 @@ function addLivro() {
                         $('#modalAddLivro').modal('hide');
                         $('.modal-backdrop').remove();
                         msgGeral('Cadastro efetuado com sucesso!', 'success');
-                        // listarPageTab('listarUser');
                         form.reset();
+                        setTimeout(function () {
+                            listarPageTab('listarLivro');
+                        }, 1500);                        
                     } else {
                         msgGeral('ERRO: ' + retorno + ' Tente novamente mais tarde.', 'error');
                         form.reset();
@@ -763,6 +767,164 @@ function addLivro() {
         return;
 
     }
+
+}
+
+function verLivro(id, modal) {
+
+    var dados = {
+        acao: 'verLivro',
+        id: id,
+    };
+
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: 'controle.php',
+        data: dados,
+        beforeSend: function () {
+        }, success: function (retorno) {
+
+            var status = retorno.status;
+            var dadosArray = retorno.dadosArray;
+
+            // console.log(dadosArray);
+
+            if (status === 'OK') {
+                $('span#idLivroMais').html(dadosArray['id']);
+                $('span#isbnLivroMais').html(dadosArray['isbn']);
+                $('span#tipoLivroMais').html(dadosArray['tipo']);
+                $('span#tituloLivroMais').html(dadosArray['titulo']);
+                $('span#autorLivroMais').html(dadosArray['autor']);
+                $('span#publiLivroMais').html(dadosArray['publi']);
+                $('span#qtddLivroMais').html(dadosArray['qtdd']);
+                $('span#cadLivroMais').html(dadosArray['cad']);
+                $('span#altLivroMais').html(dadosArray['alt']);
+                $("#capaLivroMais").attr("src", dadosArray['capa']);
+                $('span#descLivroMais').html(dadosArray['desc']);
+
+                $('#' + modal).modal('show');
+            } else {
+
+                $('div#infoUserMais').html('' +
+                    '<div class="w-100 alert-danger" role="alert">' + dadosArray + '</div>'
+                );
+
+                $('#' + modal).modal('show');
+
+            }
+
+        }
+    });
+
+}
+
+
+
+// AÇÕES EMPRÉSTIMO
+var sendAddLivro = false;
+
+function addEmp() {
+
+    if (!sendAddLivro) {
+
+        $('#frmAddLiv').submit(function (event) {
+            event.preventDefault();
+
+            let form = this;
+
+            let dadosForm = $(this).serializeArray();
+
+            dadosForm.push(
+                { name: 'acao', value: 'addEmp' },
+            )
+
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                url: 'controle.php',
+                data: dadosForm,
+                beforeSend: function () {
+                },
+                success: function (retorno) {
+
+                    if (retorno === 'OK') {
+                        $('#modalAddEmp').modal('hide');
+                        $('.modal-backdrop').remove();
+                        msgGeral('Cadastro efetuado com sucesso!', 'success');
+                        form.reset();
+                        setTimeout(function () {
+                            listarPageTab('listarEmp');
+                        }, 1500);                        
+                    } else {
+                        msgGeral('ERRO: ' + retorno + ' Tente novamente mais tarde.', 'error');
+                        form.reset();
+                    }
+
+                }
+
+            });
+
+        });
+
+        sendAddLivro = true;
+
+        return;
+
+    } else {
+
+        return;
+
+    }
+
+}
+
+function verEmp(id, modal) {
+
+    var dados = {
+        acao: 'verLivro',
+        id: id,
+    };
+
+    $.ajax({
+        type: "POST",
+        dataType: 'json',
+        url: 'controle.php',
+        data: dados,
+        beforeSend: function () {
+        }, success: function (retorno) {
+
+            var status = retorno.status;
+            var dadosArray = retorno.dadosArray;
+
+            // console.log(dadosArray);
+
+            if (status === 'OK') {
+                $('span#idLivroMais').html(dadosArray['id']);
+                $('span#isbnLivroMais').html(dadosArray['isbn']);
+                $('span#tipoLivroMais').html(dadosArray['tipo']);
+                $('span#tituloLivroMais').html(dadosArray['titulo']);
+                $('span#autorLivroMais').html(dadosArray['autor']);
+                $('span#publiLivroMais').html(dadosArray['publi']);
+                $('span#qtddLivroMais').html(dadosArray['qtdd']);
+                $('span#cadLivroMais').html(dadosArray['cad']);
+                $('span#altLivroMais').html(dadosArray['alt']);
+                $("#capaLivroMais").attr("src", dadosArray['capa']);
+                $('span#descLivroMais').html(dadosArray['desc']);
+
+                $('#' + modal).modal('show');
+            } else {
+
+                $('div#infoUserMais').html('' +
+                    '<div class="w-100 alert-danger" role="alert">' + dadosArray + '</div>'
+                );
+
+                $('#' + modal).modal('show');
+
+            }
+
+        }
+    });
 
 }
 

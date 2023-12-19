@@ -13,8 +13,8 @@
                     </h3>
                 </div>
                 <div class="col-md-4 col-sm-6 col-6 d-flex justify-content-center align-items-center">
-                    <a class="nav-link linkMenu" idMenu="home" href="#">
-                        <h2>BIBLIOTECA</h2>
+                    <a class="nav-link linkMenu imgNav" idMenu="home" href="#">
+                        <img src="./assets/img/BookA.png" alt="">
                     </a>
                 </div>
                 <div class="col-md-4 col-sm-6 col-6 d-flex justify-content-end align-items-center">
@@ -32,7 +32,7 @@
                 <div class="userInfo ps-2">
                     <div class="row">
                         <div class="col-3">
-                            <img src="./assets/img/logo.png" alt="">
+                            <img src="./assets/img/logo1.png" alt="">
                         </div>
                         <div class="col-9">
                             <h3><?php 

@@ -5,7 +5,7 @@
         <div class="row">
             <div class="col-4 col-sm-4 col-md-4">
                 <div class="alinharVH d-flex align-items-center justify-content-center">
-                    <img src="assets/img/logo.png" alt="imgLogo">
+                    <img src="assets/img/logo1.png" alt="imgLogo">
                 </div>
             </div>
             <div class="col-8 col-sm-8 col-md-8">
@@ -22,129 +22,12 @@
 
     <div class="corpoListar mt-4">
 
-        <div id="listarTable" class="dashboardLista mt-3">
-            <table class="table table-hover table-stripped table-borderless text-center rounded-5">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col" width="5%">ID</th>
-                        <th scope="col" width="15%">Título</th>
-                        <th scope="col" width="30%">Sinopse</th>
-                        <th scope="col" width="18%">Autor</th>
-                        <th scope="col" width="18%" class="showtd">Data de Publicação</th>
-                        <th scope="col" width="14%">Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Mark</td>
-                        <td>Nove Novena</td>
-                        <td>29/10/2023</td>
-                        <td class="showtd">10/11/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Otto</td>
-                        <td>Percy Jasckson e o Ladrão de Raios</td>
-                        <td>12/10/2023</td>
-                        <td class="showtd">15/11/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">3</th>
-                        <td>Amber</td>
-                        <td>Harry Potter e a Pedra Filosofal</td>
-                        <td>02/09/2023</td>
-                        <td class="showtd">17/10/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">4</th>
-                        <td>Mark</td>
-                        <td>Nove Novena</td>
-                        <td>29/10/2023</td>
-                        <td class="showtd">10/11/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">5</th>
-                        <td>Otto</td>
-                        <td>Percy Jasckson e o Ladrão de Raios</td>
-                        <td>12/10/2023</td>
-                        <td class="showtd">15/11/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">6</th>
-                        <td>Amber</td>
-                        <td>Harry Potter e a Pedra Filosofal</td>
-                        <td>02/09/2023</td>
-                        <td class="showtd">17/10/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">7</th>
-                        <td>Mark</td>
-                        <td>Nove Novena</td>
-                        <td>29/10/2023</td>
-                        <td class="showtd">10/11/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">8</th>
-                        <td>Otto</td>
-                        <td>Percy Jasckson e o Ladrão de Raios</td>
-                        <td>12/10/2023</td>
-                        <td class="showtd">15/11/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">9</th>
-                        <td>Amber</td>
-                        <td>Harry Potter e a Pedra Filosofal</td>
-                        <td>02/09/2023</td>
-                        <td class="showtd">17/10/2023</td>
-                        <td>
-                            <button type="button" class="btn btn-secondary"><span class="mdi mdi-dots-horizontal"></span></button>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-                            <button type="button" class="btn btn-danger"><span class="mdi mdi-delete"></span></button>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+        <div id="contentTable" class="dashboardLista mt-3">
+            <?php
+
+            include_once 'listarTable.php';
+
+            ?>
         </div>
 
     </div>
@@ -256,8 +139,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
+                    <button type="submit" class="btn btn-success" onclick="addLivro();">Cadastrar Livro</button>
                     </div>
 
                 </form>

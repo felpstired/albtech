@@ -21,7 +21,7 @@ $contReg = contadorRegistroTodos('tbusuarios');
 $totalPages = ceil($contReg / $linhas);
 // echo $totalPages;
 
-$listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios');
+// $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios');
 
 ?>
 
@@ -40,7 +40,7 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
 
         <?php
 
-        if ($listar == 'Vazio') {
+        if ($listarPagi == 'Vazio') {
 
         ?>
 

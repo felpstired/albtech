@@ -1,48 +1,46 @@
 <?php 
 
-include_once './config/conexao.php';
 include_once './config/constantes.php';
+include_once './config/conexao.php';
 include_once './functions/dashboard.php';
 
 $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
-if (isset($dados['nomeAddUser']) && !empty($dados['nomeAddUser'])) {
-    $nome = $dados['nomeAddUser'];
+if (isset($dados['empUser']) && !empty($dados['empUser'])) {
+    if ($dados['empUser'] > 0) {
+        $idUser = $dados['empUser'];
+    } else {
+        echo json_encode('Usuário escolhido inválido.');
+        die();
+    }    
 } else {
     echo json_encode('Campos não preenchidos ou inexistentes. Por favor, tente novamente.');
     die();
 }
 
-if (isset($dados['cpfAddUser']) && !empty($dados['cpfAddUser'])) {
-    $cpf = $dados['cpfAddUser'];
+if (isset($dados['empLivro']) && !empty($dados['empLivro'])) {
+    if ($dados['empLivro'] > 0) {
+        $idLivro = $dados['empLivro'];
+    } else {
+        echo json_encode('Livro escolhido inválido.');
+        die();
+    }    
 } else {
     echo json_encode('Campos não preenchidos ou inexistentes. Por favor, tente novamente.');
     die();
 }
 
-if (isset($dados['telAddUser']) && !empty($dados['telAddUser'])) {
-    $tel = $dados['telAddUser'];
-} else {
-    echo json_encode('Campos não preenchidos ou inexistentes. Por favor, tente novamente.');
-    die();
-}
-
-if (isset($dados['emailAddUser']) && !empty($dados['emailAddUser'])) {
-    $email = $dados['emailAddUser'];
+if (isset($dados['empDev']) && !empty($dados['empDev'])) {
+    $dataDev = $dados['empDev'];
 } else {
     echo json_encode('Campos não preenchidos ou inexistentes. Por favor, tente novamente.');
     die();
 }
 
 
-if (isset($dados['senhaAddUser']) && !empty($dados['senhaAddUser'])) {
-    $senha = password_hash($dados['senhaAddUser'], PASSWORD_BCRYPT);
-} else {
-    echo json_encode('Campos não preenchidos ou inexistentes. Por favor, tente novamente.');
-    die();
-}
 
-$inserir = insertCincoCad('tbusuarios', 'nome, telefone, cpf, email, senha, cadastro', $nome, $tel, $cpf, $email, $senha);
+$inserir = insertLivro('tbemprestimo', 'idlivro, idusuarios, datadevolucao, cadastro', $idUser, $idLivro, $dataDev, DATATIMEATUAL);
+
 
 if ($inserir == 'Gravado') {
     echo json_encode('OK');

@@ -4,7 +4,24 @@ include_once './config/constantes.php';
 include_once './config/conexao.php';
 include_once './functions/dashboard.php';
 
-$listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios');
+$linhas = 5;
+
+if (!isset($_SESSION['numPage'])) {
+    $_SESSION['numPage'] = 1;
+}
+
+$pageInicial = ($_SESSION['numPage'] - 1) * $linhas;
+
+$listarPagi = listarLimit('tbemprestimo', 'idemprestimo, idlivro, idusuarios, datadevolucao, cadastro', $pageInicial, $linhas);
+// echo var_dump($listarPagi);
+
+$contReg = contadorRegistroTodos('tbemprestimo');
+// echo var_dump($contReg);
+
+$totalPages = ceil($contReg / $linhas);
+// echo $totalPages;
+
+// $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios');
 
 ?>
 
@@ -12,36 +29,40 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
     <thead class="table-dark">
         <tr>
             <th scope="col" width="5%">ID</th>
+            <th scope="col" width="15%">Livro Emprestado</th>
             <th scope="col" width="15%">Usuário</th>
-            <th scope="col" width="18%">E-mail</th>
-            <th scope="col" width="18%">Telefone</th>
-            <th scope="col" width="18%" class="showtd">Cadastro</th>
-            <th scope="col" width="14%">Ações</th>
+            <th scope="col" width="10%">Empréstimo</th>
+            <th scope="col" width="10%">Devolução</th>
+            <th scope="col" width="15%">Ações</th>
         </tr>
     </thead>
     <tbody>
 
         <?php
 
-        if ($listar == 'Vazio') {
+        if ($listarPagi == 'Vazio') {
 
         ?>
 
             <tr>
-                <th rowspan="6" class="alert-danger" role="alert">Não há registros no banco!</th>
+                <th colspan="8">
+                    <div class="alert-danger" role="alert">
+                        Não há registros no banco!
+                    </div>
+                </th>
             </tr>
 
             <?php
 
         } else {
 
-            foreach ($listar as $itemLista) {
-                $id = $itemLista->idusuarios;
+            foreach ($listarPagi as $itemLista) {
+                $idemp = $itemLista->idemprestimo;
+                $idlivro = $itemLista->idlivro;
+                $iduser = $itemLista->idusuarios;
 
-                $nome = explode(' ', trim($itemLista->nome))[0];
-
-                $email = $itemLista->email;
-                $tel = $itemLista->telefone;
+                $dateD = date_create($itemLista->datadevolucao);
+                $dataDevol = date_format($dateD, 'd/m/Y');
 
                 $date = date_create($itemLista->cadastro);
                 $dataCad = date_format($date, 'd/m/Y');
@@ -49,29 +70,59 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
             ?>
 
                 <tr>
-                    <th scope="row"><?php echo $id; ?></th>
-                    <td><?php echo $nome; ?></td>
-                    <td><?php echo $email; ?></td>
-                    <td><?php echo $tel; ?></td>
-                    <td><?php echo $dataCad; ?></td>
+                    <th scope="row"><?php echo $idemp; ?></th>
                     <td>
-                        <button type="button" class="btn btn-secondary" onclick="verUser(<?php echo $id; ?>, 'modalMaisUser');"><span class="mdi mdi-dots-horizontal"></span></button>
                         <?php
 
-                        if ($id != $_SESSION['dadosUser']['id']) {
+                        $listarLivro = listarRegistroUInt('tblivro', 'titulo', 'idlivro', $idlivro);
 
+                        if ($listarLivro != 'Vazio') {
 
+                            foreach ($listarLivro as $itemLista) {
+                                $titulo = $itemLista->titulo;
+                            }
 
-                        ?>
-                            <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button>
-
-                        <?php
-
+                            echo $titulo;
                         }
 
                         ?>
+                    </td>
+                    <td>
+                        <?php
 
-                        <button type="button" class="btn btn-danger" onclick="msgDelete(<?php echo $id; ?>, 'delUser', 'listarUser');"><span class="mdi mdi-delete"></span></button>
+                        $listarUser = listarRegistroUInt('tbusuarios', 'nome', 'idusuarios', $idlivro);
+
+                        if ($listarUser != 'Vazio') {
+
+                            foreach ($listarUser as $itemLista) {
+                                $nome = $itemLista->nome;
+                            }
+
+                            echo $nome;
+                        }
+
+                        ?>
+                    </td>
+                    <td><?php echo $dataCad; ?></td>
+                    <td><?php echo $dataDevol; ?></td>
+                    <td>
+                        <button type="button" class="btn btn-secondary" onclick="verLivro(<?php echo $id; ?>, 'modalVerLivro');"><span class="mdi mdi-dots-horizontal"></span></button>
+                        <?php
+
+                        // if ($id != $_SESSION['dadosUser']['id']) {
+
+
+
+                        ?>
+                        <!-- <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button> -->
+
+                        <?php
+
+                        // }
+
+                        ?>
+
+                        <!-- <button type="button" class="btn btn-danger" onclick="msgDelete(<?php // echo $id; ?>, 'delLivro', 'listarLivro');"><span class="mdi mdi-delete"></span></button> -->
                     </td>
                 </tr>
 
@@ -84,9 +135,67 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
 
     </tbody>
 </table>
+<div class="pagination <?php if ($contReg <= 5) {
+                            echo 'd-none';
+                        } ?>">
+    <div class="divPagi">
+        <span>Página <b><?php echo $_SESSION['numPage']; ?></b> de <b><?php echo $totalPages; ?></b></span>
+    </div>
+    <div class="divPagi">
+        <ul>
+            <li class="<?php if ($_SESSION['numPage'] == 1) {
+                            echo 'd-none';
+                        } ?>">
+                <a href="#" class="linkPagi" idPagi="<?php echo 1; ?>">
+                    <span class="mdi mdi-skip-backward"></span> Primeira Página
+                </a>
+            </li>
+            <li class="<?php if ($_SESSION['numPage'] == 1) {
+                            echo 'd-none';
+                        } ?>">
+                <a href="#" class="linkPagi" idPagi="<?php echo $_SESSION['numPage'] - 1; ?>">
+                    <span class="mdi mdi-skip-previous"></span> Anterior
+                </a>
+            </li>
+            <?php
+
+            for ($i = 1; $i < ($totalPages + 1); $i++) {
+
+            ?>
+
+                <li>
+                    <a href="#" class="linkPagi" idPagi="<?php echo $i; ?>">
+                        <span><b><?php echo $i; ?></b></span>
+                    </a>
+                </li>
+
+            <?php
+
+            }
+
+            ?>
+
+            <li class="<?php if ($_SESSION['numPage'] == $totalPages) {
+                            echo 'd-none';
+                        } ?>">
+                <a href="#" class="linkPagi" idPagi="<?php echo $_SESSION['numPage'] + 1; ?>">
+                    Próxima <span class="mdi mdi-skip-next"></span>
+                </a>
+            </li>
+            <li class="<?php if ($_SESSION['numPage'] == $totalPages) {
+                            echo 'd-none';
+                        } ?>">
+                <a href="#" class="linkPagi" idPagi="<?php echo $totalPages; ?>">
+                    Última Página <span class="mdi mdi-skip-forward"></span>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+</div>
 
 <!--  // MODAL DE VER MAIS //  -->
-<div class="modal fade" tabindex="-1" id="modalMaisUser" aria-hidden="true">
+<div class="modal fade" tabindex="-1" id="modalVerLivro" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
@@ -96,46 +205,63 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
 
             <div class="modal-body">
 
-                <div class="row row-cols-3 gap-0 row-gap-3 mt-3 mb-3" id="infoUserMais">
+                <div class="row row-cols-3 gap-0 row-gap-3 mt-3 mb-3" id="infoLivroMais">
 
                     <div class="col fs-5">
-                        <span class="fw-bold">ID:</span>ﾠ<span id="idUserMais"></span>
+                        <span class="fw-bold">ID:</span>ﾠ<span id="idLivroMais"></span>
+                    </div>
+                    <div class="col fs-5">
+                        <span class="fw-bold"><span class="mdi mdi-book-cog"></span> ISBN:</span>ﾠ<span id="isbnLivroMais"></span>
                     </div>
                     <div class="col fs-5">
                         <span class="fw-bold">
-                            <span class="mdi mdi-information-outline"></span> Status:</span>ﾠ<span id="statusUserMais"></span>
-                    </div>
-                    <div class="col fs-5">
-                        <span class="fw-bold"><span class="mdi mdi-counter"></span> Pontuação:</span>ﾠ<span id="pontUserMais"></span>
+                            <span class="mdi mdi-help-box-multiple"></span> Tipo:</span>ﾠ<span id="tipoLivroMais"></span>
                     </div>
                     <div class="col fs-5">
                         <span class="fw-bold">
-                            <span class="mdi mdi-account"></span> Nome:</span>ﾠ<span id="nomeUserMais"></span>
+                            <span class="mdi mdi-tag-text"></span> Titulo:</span>ﾠ<span id="tituloLivroMais"></span>
                     </div>
                     <div class="col fs-5">
-                        <span class="fw-bold"><span class="mdi mdi-phone"></span> Telefone:</span>ﾠ<span id="telUserMais"></span>
-                    </div>
-                    <div class="col fs-5">
-                        <span class="fw-bold">
-                            <span class="mdi mdi-card-account-details"></span> CPF:</span>ﾠ<span id="cpfUserMais"></span>
-                    </div>
-                    <div class="col fs-5">
-                        <span class="fw-bold"><span class="mdi mdi-at"></span> E-mail:</span>ﾠ<span id="emailUserMais"></span>
-                    </div>
-                    <div class="col fs-5">
-                        <span class="fw-bold"><span class="mdi mdi-account-check"></span> Cadastro:</span>ﾠ<span id="cadUserMais"></span>
+                        <span class="fw-bold"><span class="mdi mdi-account-star"></span> Autor:</span>ﾠ<span id="autorLivroMais"></span>
                     </div>
                     <div class="col fs-5">
                         <span class="fw-bold">
-                            <span class="mdi mdi-clock-edit"></span> Última alteração:</span>ﾠ<span id="altUserMais"></span>
+                            <span class="mdi mdi-publish"></span> Publicação:</span>ﾠ<span id="publiLivroMais"></span>
                     </div>
+                    <div class="col fs-5">
+                        <span class="fw-bold"><span class="mdi mdi-book-multiple"></span> Quantidade:</span>ﾠ<span id="qtddLivroMais"></span>
+                    </div>
+                    <div class="col fs-5">
+                        <span class="fw-bold">
+                            <span class="mdi mdi-clock-check"></span> Cadastro:</span>ﾠ<span id="cadLivroMais"></span>
+                    </div>
+                    <div class="col fs-5">
+                        <span class="fw-bold">
+                            <span class="mdi mdi-clock-edit"></span> Última alteração:</span>ﾠ<span id="altLivroMais"></span>
+                    </div>
+
+                </div>
+
+                <div class="row gap-0 row-gap-3 mt-5 mb-3" id="infoLivroMais">
+
+                    <div class="col-3 fs-5">
+                        <span class="fw-bold"><span class="mdi mdi-image"></span> Capa:</span><br>
+                        <span class="capaVer d-flex justify-content-center align-items-center">
+                            <img src="" alt="capa_livro" id="capaLivroMais">
+                        </span>
+                    </div>
+                    <div class="col-9 fs-5">
+                        <span class="fw-bold"><span class="mdi mdi-text-box"></span> Descrição:</span><br>
+                        <span id="descLivroMais"></span>
+                    </div>
+
 
                 </div>
 
             </div>
 
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
             </div>
 
         </div>
@@ -193,7 +319,7 @@ $listar = listarGeral('idusuarios, nome, telefone, email, cadastro', 'tbusuarios
                 </div>
 
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
                     <button type="submit" class="btn btn-success" onclick="altUser();">Cadastrar Usuário</button>
                 </div>
 

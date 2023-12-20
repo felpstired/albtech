@@ -3050,6 +3050,30 @@ function insertQuatro($tabela, $campos, $valeu1, $valeu2, $valeu3, $valeu4)
     $conn = null;
 }
 
+function insertEmp($tabela, $campos, $valeu1, $valeu2, $valeu3)
+{
+    $conn = conectar();
+    try {
+        $conn->beginTransaction();
+        $sqInsert = $conn->prepare("INSERT INTO $tabela($campos)VALUES(?,?,?,NOW())");
+        $sqInsert->bindValue(1, $valeu1, PDO::PARAM_INT);
+        $sqInsert->bindValue(2, $valeu2, PDO::PARAM_INT);
+        $sqInsert->bindValue(3, $valeu3, PDO::PARAM_STR);
+        $sqInsert->execute();
+        $conn->commit();
+        if ($sqInsert->rowCount() > 0) {
+            return 'Gravado';
+        } else {
+            return 'nGravado';
+        };
+    } catch (PDOException $e) {
+        echo 'Exception -> ';
+        return ($e->getMessage());
+        $conn->rollback();
+    };
+    $conn = null;
+}
+
 function insertQuatroId($tabela, $campos, $value1, $value2, $value3, $value4)
 {
     $conn = conectar();

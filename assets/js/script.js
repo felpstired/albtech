@@ -822,14 +822,16 @@ function verLivro(id, modal) {
 
 
 // AÇÕES EMPRÉSTIMO
-var sendAddLivro = false;
+var sendAddEmp = false;
 
 function addEmp() {
 
-    if (!sendAddLivro) {
+    if (!sendAddEmp) {
 
-        $('#frmAddLiv').submit(function (event) {
+        $('#frmAddEmp').submit(function (event) {
             event.preventDefault();
+
+            // console.log('aaaa');
 
             let form = this;
 
@@ -839,6 +841,8 @@ function addEmp() {
                 { name: 'acao', value: 'addEmp' },
             )
 
+            console.log(dadosForm);
+
             $.ajax({
                 type: 'POST',
                 dataType: 'json',
@@ -847,6 +851,8 @@ function addEmp() {
                 beforeSend: function () {
                 },
                 success: function (retorno) {
+
+                    console.log(retorno);
 
                     if (retorno === 'OK') {
                         $('#modalAddEmp').modal('hide');
@@ -867,7 +873,7 @@ function addEmp() {
 
         });
 
-        sendAddLivro = true;
+        sendAddEmp = true;
 
         return;
 
@@ -882,7 +888,7 @@ function addEmp() {
 function verEmp(id, modal) {
 
     var dados = {
-        acao: 'verLivro',
+        acao: 'verEmp',
         id: id,
     };
 
@@ -900,17 +906,13 @@ function verEmp(id, modal) {
             // console.log(dadosArray);
 
             if (status === 'OK') {
-                $('span#idLivroMais').html(dadosArray['id']);
-                $('span#isbnLivroMais').html(dadosArray['isbn']);
-                $('span#tipoLivroMais').html(dadosArray['tipo']);
-                $('span#tituloLivroMais').html(dadosArray['titulo']);
-                $('span#autorLivroMais').html(dadosArray['autor']);
-                $('span#publiLivroMais').html(dadosArray['publi']);
-                $('span#qtddLivroMais').html(dadosArray['qtdd']);
-                $('span#cadLivroMais').html(dadosArray['cad']);
-                $('span#altLivroMais').html(dadosArray['alt']);
-                $("#capaLivroMais").attr("src", dadosArray['capa']);
-                $('span#descLivroMais').html(dadosArray['desc']);
+                $('span#idEmpMais').html(dadosArray['id']);
+                $('span#userEmpMais').html(dadosArray['user']);
+                $('span#livroEmpMais').html(dadosArray['titulo']);
+                $('span#autorEmpMais').html(dadosArray['autor']);
+                $('span#dataEmpMais').html(dadosArray['cad']);
+                $('span#devEmpMais').html(dadosArray['dev']);
+                $('span#sttsEmpMais').html(dadosArray['status']);
 
                 $('#' + modal).modal('show');
             } else {
@@ -927,6 +929,75 @@ function verEmp(id, modal) {
     });
 
 }
+
+
+// var sendAltDev = false;
+
+// function ativGeral(id, acao, page) {
+
+//     if (!sendAltDev) {
+
+//         Swal.fire({
+//             title: 'Você tem certeza que deseja continuar?',
+//             text: "Essa ação irá alterar o status desse registro para <Devolvido>.",
+//             icon: 'warning',
+//             showCancelButton: true,
+//             confirmButtonColor: '#3085d6',
+//             cancelButtonColor: '#d33',
+//             cancelButtonText: 'Não, cancelar!',
+//             confirmButtonText: 'Sim, alterar registro!'
+//         }).then((result) => {
+//             if (result.isConfirmed) {
+
+//                 var dados = {
+//                     acao: acao,
+//                     id: id,
+//                 };
+
+//                 $.ajax({
+//                     type: "POST",
+//                     dataType: 'json',
+//                     url: 'controle.php',
+//                     data: dados,
+//                     beforeSend: function () {
+
+//                     }, success: function (retorno) {
+
+//                         if (retorno === 'OK') {
+//                             Swal.fire({
+//                                 title: 'Alterado!',
+//                                 text: 'O status do registro foi alterado com sucesso.',
+//                                 icon: 'success',
+//                                 showConfirmButton: false,
+//                                 timer: 2000
+//                             })
+//                             listarPage(page);
+//                         } else {
+//                             Swal.fire({
+//                                 title: 'Erro!',
+//                                 text: retorno + ' Tente novamente mais tarde.',
+//                                 icon: 'error',
+//                                 showConfirmButton: true,
+//                             })
+//                         }
+
+//                     }
+//                 });
+//             }
+//         })
+
+//         sendAltDev = true;
+
+//         return;
+
+//     } else {
+
+//         return;
+
+//     }
+
+
+// }
 
 
 

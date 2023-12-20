@@ -72,7 +72,7 @@
                         </li>
                     </a>
                     <hr>
-                    <a class="nav-link linkMenu" idMenu="pageDev" href="#">
+                    <!-- <a class="nav-link linkMenu" idMenu="pageDev" href="#">
                         <li class="nav-item row text-center align-items-center">
 
                             <div class="col-3 text-end">
@@ -84,7 +84,7 @@
                             </div>
                         </li>
                     </a>
-                    <hr>
+                    <hr> -->
                     <a class="nav-link linkMenu" idMenu="pageLiv" href="#">
                         <li class="nav-item row text-center align-items-center">
 
@@ -97,7 +97,7 @@
                         </li>
                     </a>
                     <hr>
-                    <a class="nav-link linkMenu" idMenu="pageTLiv" href="#">
+                    <!-- <a class="nav-link linkMenu" idMenu="pageTLiv" href="#">
                         <li class="nav-item row text-center align-items-center">
 
                             <div class="col-3 text-end">
@@ -108,7 +108,7 @@
                             </div>
                         </li>
                     </a>
-                    <hr>
+                    <hr> -->
                     <a class="nav-link linkMenu" idMenu="pageUser" href="#">
                         <li class="nav-item row text-center align-items-center">
 
@@ -133,7 +133,7 @@
                         </li>
                     </a>
                     <hr>
-                    <a class="nav-link linkMenu" idMenu="pageLog" href="#">
+                    <!-- <a class="nav-link linkMenu" idMenu="pageLog" href="#">
                         <li class="nav-item row text-center align-items-center">
 
                             <div class="col-3 text-end">
@@ -144,7 +144,7 @@
                             </div>
                         </li>
                     </a>
-                    <hr>
+                    <hr> -->
                     <a class="nav-link" href="#" onclick="Logout();">
                         <li class="nav-item row text-center align-items-center">
 

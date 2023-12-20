@@ -12,7 +12,7 @@ if (!isset($_SESSION['numPage'])) {
 
 $pageInicial = ($_SESSION['numPage'] - 1) * $linhas;
 
-$listarPagi = listarLimit('tbemprestimo', 'idemprestimo, idlivro, idusuarios, datadevolucao, cadastro', $pageInicial, $linhas);
+$listarPagi = listarLimit('tbemprestimo', 'idemprestimo, idlivro, idusuarios, datadevolucao, cadastro, ativo', $pageInicial, $linhas);
 // echo var_dump($listarPagi);
 
 $contReg = contadorRegistroTodos('tbemprestimo');
@@ -32,7 +32,7 @@ $totalPages = ceil($contReg / $linhas);
             <th scope="col" width="15%">Livro Emprestado</th>
             <th scope="col" width="15%">Usuário</th>
             <th scope="col" width="10%">Empréstimo</th>
-            <th scope="col" width="10%">Devolução</th>
+            <th scope="col" width="20%">Previsão de Devolução</th>
             <th scope="col" width="15%">Ações</th>
         </tr>
     </thead>
@@ -66,6 +66,8 @@ $totalPages = ceil($contReg / $linhas);
 
                 $date = date_create($itemLista->cadastro);
                 $dataCad = date_format($date, 'd/m/Y');
+
+                $status = $itemLista->ativo;
 
             ?>
 
@@ -106,23 +108,32 @@ $totalPages = ceil($contReg / $linhas);
                     <td><?php echo $dataCad; ?></td>
                     <td><?php echo $dataDevol; ?></td>
                     <td>
-                        <button type="button" class="btn btn-secondary" onclick="verLivro(<?php echo $id; ?>, 'modalVerLivro');"><span class="mdi mdi-dots-horizontal"></span></button>
                         <?php
 
-                        // if ($id != $_SESSION['dadosUser']['id']) {
-
-
-
-                        ?>
-                        <!-- <button type="button" class="btn btn-primary"><span class="mdi mdi-pencil"></span></button> -->
-
-                        <?php
-
-                        // }
+                        if ($status == 'A') {
 
                         ?>
 
-                        <!-- <button type="button" class="btn btn-danger" onclick="msgDelete(<?php // echo $id; ?>, 'delLivro', 'listarLivro');"><span class="mdi mdi-delete"></span></button> -->
+                            <button type="button" class="btn btn-secondary" onclick="verEmp('modalVerEmp');"><span class="mdi mdi-dots-horizontal"></span></button>
+
+                            <button type="button" class="btn btn-success"><span class="mdi mdi-book-arrow-right"></span></button>
+
+                        <?php
+
+                        } else {
+
+                        ?>
+
+                            Devolvido
+
+                        <?php
+
+                        }
+
+                        ?>
+
+                        <!-- <button type="button" class="btn btn-danger" onclick="msgDelete(<?php // echo $id; 
+                                                                                                ?>, 'delLivro', 'listarLivro');"><span class="mdi mdi-delete"></span></button> -->
                     </td>
                 </tr>
 
@@ -195,7 +206,7 @@ $totalPages = ceil($contReg / $linhas);
 </div>
 
 <!--  // MODAL DE VER MAIS //  -->
-<div class="modal fade" tabindex="-1" id="modalVerLivro" aria-hidden="true">
+<div class="modal fade" tabindex="-1" id="modalVerEmp" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header bg-dark text-white">
@@ -205,56 +216,32 @@ $totalPages = ceil($contReg / $linhas);
 
             <div class="modal-body">
 
-                <div class="row row-cols-3 gap-0 row-gap-3 mt-3 mb-3" id="infoLivroMais">
+                <div class="row row-cols-3 gap-0 row-gap-3 mt-3 mb-3" id="infoEmpMais">
 
                     <div class="col fs-5">
-                        <span class="fw-bold">ID:</span>ﾠ<span id="idLivroMais"></span>
+                        <span class="fw-bold">ID:</span>ﾠ<span id="idEmpMais"></span>
                     </div>
                     <div class="col fs-5">
-                        <span class="fw-bold"><span class="mdi mdi-book-cog"></span> ISBN:</span>ﾠ<span id="isbnLivroMais"></span>
+                        <span class="fw-bold"><span class="mdi mdi-book-cog"></span> Usuário:</span>ﾠ<span id="userEmpMais"></span>
                     </div>
                     <div class="col fs-5">
                         <span class="fw-bold">
-                            <span class="mdi mdi-help-box-multiple"></span> Tipo:</span>ﾠ<span id="tipoLivroMais"></span>
+                            <span class="mdi mdi-help-box-multiple"></span> Livro:</span>ﾠ<span id="livroEmpMais"></span>
                     </div>
                     <div class="col fs-5">
                         <span class="fw-bold">
-                            <span class="mdi mdi-tag-text"></span> Titulo:</span>ﾠ<span id="tituloLivroMais"></span>
+                            <span class="mdi mdi-tag-text"></span> Autor:</span>ﾠ<span id="autorEmpMais"></span>
                     </div>
                     <div class="col fs-5">
-                        <span class="fw-bold"><span class="mdi mdi-account-star"></span> Autor:</span>ﾠ<span id="autorLivroMais"></span>
-                    </div>
-                    <div class="col fs-5">
-                        <span class="fw-bold">
-                            <span class="mdi mdi-publish"></span> Publicação:</span>ﾠ<span id="publiLivroMais"></span>
-                    </div>
-                    <div class="col fs-5">
-                        <span class="fw-bold"><span class="mdi mdi-book-multiple"></span> Quantidade:</span>ﾠ<span id="qtddLivroMais"></span>
+                        <span class="fw-bold"><span class="mdi mdi-account-star"></span> Empréstimo:</span>ﾠ<span id="dataEmpMais"></span>
                     </div>
                     <div class="col fs-5">
                         <span class="fw-bold">
-                            <span class="mdi mdi-clock-check"></span> Cadastro:</span>ﾠ<span id="cadLivroMais"></span>
+                            <span class="mdi mdi-publish"></span> Previsão Devolução:</span>ﾠ<span id="devEmpMais"></span>
                     </div>
                     <div class="col fs-5">
-                        <span class="fw-bold">
-                            <span class="mdi mdi-clock-edit"></span> Última alteração:</span>ﾠ<span id="altLivroMais"></span>
+                        <span class="fw-bold"><span class="mdi mdi-book-multiple"></span> Status:</span>ﾠ<span id="sttsEmpMais"></span>
                     </div>
-
-                </div>
-
-                <div class="row gap-0 row-gap-3 mt-5 mb-3" id="infoLivroMais">
-
-                    <div class="col-3 fs-5">
-                        <span class="fw-bold"><span class="mdi mdi-image"></span> Capa:</span><br>
-                        <span class="capaVer d-flex justify-content-center align-items-center">
-                            <img src="" alt="capa_livro" id="capaLivroMais">
-                        </span>
-                    </div>
-                    <div class="col-9 fs-5">
-                        <span class="fw-bold"><span class="mdi mdi-text-box"></span> Descrição:</span><br>
-                        <span id="descLivroMais"></span>
-                    </div>
-
 
                 </div>
 
@@ -263,67 +250,6 @@ $totalPages = ceil($contReg / $linhas);
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
             </div>
-
-        </div>
-    </div>
-</div>
-
-
-
-<!--  // MODAL DE ALTERAÇÃO //  -->
-<div class="modal fade" tabindex="-1" id="modalAltUser" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-dark text-white">
-                <h3 class="modal-title"><span class="mdi mdi-account-plus"></span> Novo Registro de Usuário</h3>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-
-            <form action="#" method="post" id="frmAltUser" name="frmAltUser">
-
-                <div class="modal-body fs-5">
-
-                    <div class="mb-3">
-                        <label for="nomeAltUser" class="form-label"><span class="mdi mdi-account"></span> Nome:</label>
-                        <input type="text" class="form-control" id="nomeAltUser" name="nomeAltUser" placeholder="Insira seu nome..." maxlength="120" required>
-                    </div>
-
-                    <div class="row">
-                        <div class="mb-3 col-sm-12 col-md-6">
-                            <label for="cpfAltUser" class="form-label"><span class="mdi mdi-card-account-details-star"></span> CPF:</label>
-                            <input type="text" class="form-control maskCPF" id="cpfAltUser" name="cpfAltUser" placeholder="123.456.789-10" maxlength="120" required>
-                        </div>
-                        <div class="mb-3 col-sm-12 col-md-6">
-                            <label for="telAltUser" class="form-label"><span class="mdi mdi-phone"></span> Telefone:</label>
-                            <input type="text" class="form-control maskTelefone" id="telAltUser" name="telAltUser" placeholder="(33) 9 9999-9999" required>
-                        </div>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="emailAltUser" class="form-label"><span class="mdi mdi-at"></span> E-mail:</label>
-                        <input type="email" class="form-control" id="emailAltUser" name="emailAltUser" placeholder="Insira seu email..." required>
-                    </div>
-
-                    <div class="row">
-                        <div class="mb-3 col-sm-12 col-md-6">
-                            <label for="senhaAltUser" class="form-label"><span class="mdi mdi-lock"></span> Senha:</label>
-                            <input type="password" class="form-control" id="senhaAltUser" name="senhaAltUser" placeholder="Digite uma senha..." maxlength="120" required>
-                        </div>
-                        <div class="mb-3 col-sm-12 col-md-6">
-                            <label for="senhaAltUser2" class="form-label"><span class="mdi mdi-lock-alert"></span> Repita sua senha:</label>
-                            <input type="password" class="form-control" id="senhaAltUser2" name="senhaAltUser2" placeholder="Confirme sua senha..." required>
-                        </div>
-                    </div>
-                    <div id="errorMsg" class="form-text text-danger"></div>
-
-                </div>
-
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-success" onclick="altUser();">Cadastrar Usuário</button>
-                </div>
-
-            </form>
 
         </div>
     </div>

@@ -37,10 +37,11 @@ if (isset($dados['empDev']) && !empty($dados['empDev'])) {
     die();
 }
 
+echo json_encode($dataDev);
 
+$inserirEmp = insertEmp('tbemprestimo', 'idlivro, idusuarios, datadevolucao, cadastro', $idLivro, $idUser, $dataDev);
 
-$inserir = insertLivro('tbemprestimo', 'idlivro, idusuarios, datadevolucao, cadastro', $idUser, $idLivro, $dataDev, DATATIMEATUAL);
-
+// echo json_encode($inserirEmp);
 
 if ($inserir == 'Gravado') {
     echo json_encode('OK');

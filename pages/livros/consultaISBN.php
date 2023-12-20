@@ -37,7 +37,13 @@ if ($response !== false) {
         }
 
         if (isset($livro['publishedDate'])) {
-            $dataPubli = $livro['publishedDate'];
+
+            if (strlen($livro['publishedDate']) == 4) {
+                $dataPubli = $livro['publishedDate'] . '-01-01';
+            } else {
+                $dataPubli = $livro['publishedDate'];
+            }           
+
         } else {
             $dataPubli = false;
         }

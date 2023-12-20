@@ -8,7 +8,7 @@ $dados = filter_input_array(INPUT_POST, FILTER_DEFAULT);
 
 $id = $dados['id'];
 
-$listar = listarRegistroUInt('tblivro', 'idlivro, idtipoLivro, titulo, autor, datapubli, descricao, capa, isbn, quantidade, cadastro, alteracao', 'idlivro', $id);
+$listar = listarRegistroUInt('tbemprestimo', 'idemprestimo, idlivro, idusuarios, datadevolucao, cadastro, ativo', 'idemprestimo', $id);
 
 if ($listar == 'Vazio') {
 
@@ -18,48 +18,59 @@ if ($listar == 'Vazio') {
 } else {
 
     foreach ($listar as $item) {
+        $idemp = $item->idemprestimo;
         $idlivro = $item->idlivro;
-        $idtipoLivro = $item->idtipoLivro;
-        $titulo = $item->titulo;
-        $autor = $item->autor;
-        $publi = $item->datapubli;
-        $desc = $item->descricao;
-        $capa = $item->capa;
-        $isbn = $item->isbn;
-        $qtdd = $item->quantidade;
+        $iduser = $item->idusuarios;
+        $status = $item->ativo;
 
+        $dev = date_create($item->datadevolucao);
         $cad = date_create($item->cadastro);
-        $alt = date_create($item->alteracao);
     }
 
-    $listType = listarRegistroUInt('tbtipoLivro', 'tipoLivro', 'idtipoLivro', $idtipoLivro);
+    $listUser = listarRegistroUInt('tbusuarios', 'nome', 'idusuarios', $iduser);
 
-    if ($listar == 'Vazio') {
+    if ($listUser == 'Vazio') {
 
         echo json_encode(['status' => false, 'dadosArray' => 'Não foi possível acessar as informações!']);
         die();
     
     } else {
-        foreach ($listType as $type) {
-            $tipo = $type->tipoLivro;
+        foreach ($listUser as $User) {
+            $nomeuser = $User->nome;
         }
     }
 
+    $listLivro = listarRegistroUInt('tblivro', 'titulo, autor', 'idlivro', $idlivro);
+
+    if ($listLivro == 'Vazio') {
+
+        echo json_encode(['status' => false, 'dadosArray' => 'Não foi possível acessar as informações!']);
+        die();
+    
+    } else {
+        foreach ($listLivro as $livro) {
+            $livro = $livro->titulo;
+            $autor = $livro->autor;
+        }
+    }
+
+    $dev = date_format($dev, 'd/m/Y');
     $cad = date_format($cad, 'd/m/Y');
-    $alt = date_format($alt, 'd/m/Y H:i:s');
+
+    if ($status == 'A') {
+        $status = 'Ativo';
+    } else {
+        $status = 'Devolvido';
+    }
 
     $lista = [
-        'id'=> $idlivro,
-        'tipo'=> $tipo,
-        'tirulo'=> $titulo,
+        'id'=> $idemp,
+        'user'=> $nomeuser,
+        'titulo'=> $livro,
         'autor'=> $autor,
-        'publi'=> $publi,
-        'desc'=> $desc,
-        'capa'=> $capa,
-        'isbn'=> $isbn,
-        'qtdd'=> $qtdd,
         'cad'=> $cad,
-        'alt'=> $alt,
+        'dev'=> $dev,
+        'status'=> $status,
     ];
 
     echo json_encode(['status' => 'OK', 'dadosArray' => $lista]);

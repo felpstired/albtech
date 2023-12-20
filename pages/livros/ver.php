@@ -34,7 +34,7 @@ if ($listar == 'Vazio') {
 
     $listType = listarRegistroUInt('tbtipoLivro', 'tipoLivro', 'idtipoLivro', $idtipoLivro);
 
-    if ($listar == 'Vazio') {
+    if ($listType == 'Vazio') {
 
         echo json_encode(['status' => false, 'dadosArray' => 'Não foi possível acessar as informações!']);
         die();
@@ -51,7 +51,7 @@ if ($listar == 'Vazio') {
     $lista = [
         'id'=> $idlivro,
         'tipo'=> $tipo,
-        'tirulo'=> $titulo,
+        'titulo'=> $titulo,
         'autor'=> $autor,
         'publi'=> $publi,
         'desc'=> $desc,

@@ -1,10 +1,31 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+<!-- <svg fill="none" viewBox="" width="" height="" xmlns="http://www.w3.org/2000/svg">
 
-# :memo: Trabalho de Conclusão de Curso - Técnico em Desenvolvimento de Sistemas (SENAI)
+<foreignObject width="100%" height="100%">
+
+<div xmlns="http://www.w3.org/1999/xhtml">
+
+<style>
+
+.m-none {
+    margin: 0;
+}
+
+</style> -->
+
+
+<div align="center" class>
+
+# Sistema de Gerenciamento de Biblioteca - Book A
+
+</div>
 Como projeto de conclusão do nosso curso técnico, optamos por uma dor que estava disponível no Saga Senai, aonde teríamos que estar tentando resolver o problema da empresa contratante. 
 
 
+<div align="center"> 
+
 ## Introdução ao Projeto
+
+</div>
 
 ### :office: Nossa Empresa
 
@@ -25,8 +46,11 @@ A biblioteca SENAI/CETEC de Araguaína estava com um sério problema de registro
 ### :bulb: A Solução
 Visamos tentar suprir as necessidades da empresa por meio de um dashboard que controlasse o cadastro dos clientes e monitora-se cada arquivo ou documento que fosse registrado. Esse sistema posteriormente foi nomeado de Book A (Book A Book).
 
+<div align="center"> 
 
 ## :book: Sobre o Book A
+
+</div>
 
 <div align="center">
     <!-- <img src="./assets/img/bunitinha.png" width="250px" /> -->
@@ -71,13 +95,23 @@ No nosso projeto, o ISBN foi utilizado através de uma API do Google Books, onde
 
 
 
+<div align="center"> 
 
 ## :pushpin: Versão do Projeto
+
+</div>
+
 Esse projeto, por mais que já tenha sido apresentado, não está em sua versão final e desejamos sim estar dando continuidade ao mesmo futuramente, implementando as partes que faltam e corrigindo as que podem melhorar.
+
+<div align="center"> 
 
 ```
 A versão atual do nosso site é: 1.02
 ```
+
+</div>
+
+<div align="center"> 
 
 ## 🌟 Nossa Equipe
 A nossa Equipe é composta por 4 integrantes, e são eles:
@@ -119,9 +153,12 @@ A nossa Equipe é composta por 4 integrantes, e são eles:
 
 </div>
 
+</div>
+
+
+<div align="center"> 
+
 ## :revolving_hearts: Agradecimentos
-
-
 
 <div style="display: flex; width: 100%; justify-content: space-around; margin-bottom: 15px;">
     
@@ -130,3 +167,15 @@ A nossa Equipe é composta por 4 integrantes, e são eles:
 <img style="flex-basis: 45%;" src="./assets/img/bunitinha.png" width="250px" />
 
 </div>
+
+</div>
+
+
+</div>
+
+<!-- 
+</foreignObject>
+
+</svg> -->
+
+

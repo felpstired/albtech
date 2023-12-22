@@ -59,9 +59,17 @@ A seguir, estão listadas algumas linguagens (programação, estilo e hipertexto
 
 <div align="center">
 
-<img src="https://skillicons.dev/icons?i=html,css,js,php,bootstrap,mysql" />
+<img src="https://skillicons.dev/icons?i=html,css,js,php,jquery,bootstrap,mysql" />
 
 </div>
+
+### :blue_book: Função ISBN
+O ISBN é um identificador único e universal para livros. Assim como o RG identifica uma pessoa de maneira única, o ISBN permite que cada livro seja diferenciado dos demais por meio de um código exclusivo. Com o ISBN, é possível descobrir uma série de informações valiosas sobre um livro específico. Desde o título e o autor até detalhes sobre a edição, editora, país de publicação e outras informações relevantes, tudo pode ser acessado através deste número.
+
+No nosso projeto, o ISBN foi utilizado através de uma API do Google Books, onde é possível estar buscando as informações de um livro existente na biblioteca do Google Books e trazendo as mesmas para o Book A, onde poderá ser feito o cadastro do mesmo no nosso banco de dados.
+
+
+
 
 
 ## :pushpin: Versão do Projeto
@@ -77,7 +85,7 @@ A nossa Equipe é composta por 4 integrantes, e são eles:
 <div style="display: flex; width: 100%; justify-content: center; text-align: center;">
 
 <div style="flex-basis: 20%;">
-    <a href="https://www.instagram.com/felpzinea/">
+    <a href="https://www.instagram.com/felpzinea/" style="color: white; font-weight: 700;">
 
 <img src="./assets/img/logo.png" />
     Ana Luísa
@@ -85,26 +93,26 @@ A nossa Equipe é composta por 4 integrantes, e são eles:
 </a>
 </div>
 <div style="flex-basis: 20%;">
-    <a href="">
+    <a href="" style="color: white; font-weight: 700;">
 
 <img src="./assets/img/logo.png" />
-    Ana Luísa
+    Giovana de Oliveira
 
 </a>
 </div>
 <div style="flex-basis: 20%;">
-    <a href="">
+    <a href="" style="color: white; font-weight: 700;">
 
 <img src="./assets/img/logo.png" />
-    Ana Luísa
+    José Omar
 
 </a>
 </div>
 <div style="flex-basis: 20%;">
-    <a href="">
+    <a href="" style="color: white; font-weight: 700;">
 
 <img src="./assets/img/logo.png" />
-    Ana Luísa
+    Vitória de Oliveira
 
 </a>
 </div>
@@ -112,4 +120,13 @@ A nossa Equipe é composta por 4 integrantes, e são eles:
 </div>
 
 ## :revolving_hearts: Agradecimentos
-Agradecemos e dedicamos essa parte a nosso professor e instrutor Luciano Coelho Pettersen, que nos auxiliou durante todo o nosso trajeto e  caminhada através do curso, nos ensinando o necessário para que possamos estar entregando esse trabalho final.
+
+
+
+<div style="display: flex; width: 100%; justify-content: space-around; margin-bottom: 15px;">
+    
+<p style="flex-basis: 45%; display: flex; align-items: center; text-align: center;">Agradecemos e dedicamos essa parte a nosso professor e instrutor Luciano Coelho Pettersen, que nos auxiliou durante todo o nosso trajeto e  caminhada através do curso, nos ensinando o necessário para que possamos estar entregando esse trabalho final.</p>
+
+<img style="flex-basis: 45%;" src="./assets/img/bunitinha.png" width="250px" />
+
+</div>

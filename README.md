@@ -124,9 +124,21 @@ A nossa Equipe é composta por 4 integrantes, e são eles:
 
 </div>
 
+<table border="0" width="100%">
+    <tr>
+        <th width="25%"><img src="./assets/img/logo.png" /></a></th>
+        <th width="25%"><img src="./assets/img/logo.png" /></th>
+        <th width="25%"><img src="./assets/img/logo.png" /></th>
+        <th width="25%"><img src="./assets/img/logo.png" /></th>
+    </tr>
+    <tr>
+        <th width="25%"><a href="https://www.instagram.com/felpzinea/" style="color: white; font-weight: 700;">Ana Luísa </a></th>
+        <th width="25%"><a href="" style="color: white; font-weight: 700;">Giovana de Oliveira </a></th>
+        <th width="25%"><a href="" style="color: white; font-weight: 700;">José Omar </a></th>
+        <th width="25%"><a href="" style="color: white; font-weight: 700;">Vitória de Oliveira </a></th>
+    </tr>    
+</table>
 
-|<a href="https://www.instagram.com/felpzinea/" style="color: white; font-weight: 700;"> <img src="./assets/img/logo.png" /> Ana Luísa </a>  |  <a href="" style="color: white; font-weight: 700;"> <img src="./assets/img/logo.png" /> Giovana de Oliveira </a>  |  <a href="" style="color: white; font-weight: 700;"> <img src="./assets/img/logo.png" /> José Omar </a>  |  <a href="" style="color: white; font-weight: 700;"> <img src="./assets/img/logo.png" /> Vitória de Oliveira </a>  |
-| :---: | :---: | :---: | :---: |
 
 
 ### :office: Nossa Empresa

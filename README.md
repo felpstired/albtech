@@ -132,10 +132,10 @@ A nossa Equipe é composta por 4 integrantes, e são eles:
         <th width="25%"><img src="./assets/img/logo.png" /></th>
     </tr>
     <tr>
-        <th width="25%"><a href="https://www.instagram.com/felpzinea/" style="color: white; font-weight: 700;">Ana Luísa </a></th>
-        <th width="25%"><a href="" style="color: white; font-weight: 700;">Giovana de Oliveira </a></th>
-        <th width="25%"><a href="" style="color: white; font-weight: 700;">José Omar </a></th>
-        <th width="25%"><a href="" style="color: white; font-weight: 700;">Vitória de Oliveira </a></th>
+        <th width="25%"><a href="https://www.instagram.com/felpzinea/" style="color: white; font-weight: 700;"> Ana Luísa </a></th>
+        <th width="25%"><a href="" style="color: white; font-weight: 700;"> Giovana de Oliveira </a></th>
+        <th width="25%"><a href="" style="color: white; font-weight: 700;"> José Omar </a></th>
+        <th width="25%"><a href="" style="color: white; font-weight: 700;"> Vitória de Oliveira </a></th>
     </tr>    
 </table>
 

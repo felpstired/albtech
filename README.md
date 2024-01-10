@@ -128,7 +128,7 @@ A nossa Equipe é composta por 4 integrantes, e são eles:
 | | |
 |1|2|
 
-|<img src="./assets/img/logo.png" /> Ana Luísa | <img src="./assets/img/logo.png" /> Giovana de Oliveira | <img src="./assets/img/logo.png" /> José Omar | <img src="./assets/img/logo.png" /> Vitória de Oliveira |
+|<img src="./assets/img/logo.png" width="250" /> Ana Luísa | <img src="./assets/img/logo.png" width="250" /> Giovana de Oliveira | <img src="./assets/img/logo.png" width="250" /> José Omar | <img src="./assets/img/logo.png" width="250" /> Vitória de Oliveira |
 
 
 

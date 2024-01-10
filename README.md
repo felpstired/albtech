@@ -122,7 +122,7 @@ A versão atual do nosso site é: 1.02
 
 A nossa Equipe é composta por 4 integrantes, e são eles:
 
-<div>
+</div>
 
 
 | | |
@@ -130,9 +130,6 @@ A nossa Equipe é composta por 4 integrantes, e são eles:
 
 |<a href="https://www.instagram.com/felpzinea/" style="color: white; font-weight: 700;"> <img src="./assets/img/logo.png" /> Ana Luísa </a>  |  <a href="" style="color: white; font-weight: 700;"> <img src="./assets/img/logo.png" /> Giovana de Oliveira </a>  |  <a href="" style="color: white; font-weight: 700;"> <img src="./assets/img/logo.png" /> José Omar </a>  |  <a href="" style="color: white; font-weight: 700;"> <img src="./assets/img/logo.png" /> Vitória de Oliveira </a>  |
 
-</div>
-
-</div>
 
 
 ### :office: Nossa Empresa
